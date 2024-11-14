@@ -1,0 +1,32 @@
+{
+  "name": "@nousantx/tenoxui-image-tool",
+  "version": "0.1.0",
+  "description": "Image generation library with built-in tenoxui as default styling",
+  "author": "NOuSantx <nousantx@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/nousantx/tui-image-generator#readme",
+  "keywords": [
+    "keywords"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nousantx/tui-image-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nousantx/tui-image-generator/issues"
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "types": "index.d.ts",
+  "main": "index.js",
+  "module": "index.esm.js",
+  "style": "index.css",
+  "scripts": {
+    "start": "echo 'hello world'"
+  }
+}
