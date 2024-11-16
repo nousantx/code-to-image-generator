@@ -1,4 +1,3 @@
-
 const templates = {
   start: `<div class="box-1000px center family-poppins">
   <div class="bg-blue fw-600 ls--0.030em box-236px text-neutral-50 fs-5rem br-1rem p-2rem">
@@ -59,7 +58,6 @@ const templates = {
   </div>
 </div>`
 }
-
 
 const elementTemplates = {
   text: {

@@ -7,7 +7,7 @@ const tuiInstances = new Map()
 
 function initializeTenoxUI(config) {
   tuiInstances.clear()
-  document.querySelectorAll('#preview *').forEach(element => {
+  document.querySelectorAll('#preview *').forEach((element) => {
     const instance = new __tenoxui_core.MakeTenoxUI({ element, ...config }).useDOM()
     tuiInstances.set(element, instance)
   })

@@ -9,7 +9,7 @@ const heightInput = document.getElementById('height')
 const selector = '*' // '*:not(head *, style, script, #preview, #preview *)'
 
 // Initialize tenoxui at first render
-document.querySelectorAll(selector).forEach(element => {
+document.querySelectorAll(selector).forEach((element) => {
   new __tenoxui_core.MakeTenoxUI({ element, ...tenoxuiConfig }).useDOM()
 })
 
@@ -59,7 +59,7 @@ function loadDesign(event) {
   const file = event.target.files[0]
   const reader = new FileReader()
 
-  reader.onload = e => {
+  reader.onload = (e) => {
     try {
       const designData = JSON.parse(e.target.result)
       document.getElementById('htmlInput').value = designData.html
@@ -101,10 +101,10 @@ async function getGoogleFontsStyles() {
             const fontFormat = fontUrl.endsWith('woff2')
               ? 'woff2'
               : fontUrl.endsWith('woff')
-              ? 'woff'
-              : fontUrl.endsWith('ttf')
-              ? 'truetype'
-              : 'opentype'
+                ? 'woff'
+                : fontUrl.endsWith('ttf')
+                  ? 'truetype'
+                  : 'opentype'
             const processedRule = rule.replace(
               /url\([^)]+\)/,
               `url(data:application/font-${fontFormat};charset=utf-8;base64,${base64Font})`
@@ -139,18 +139,18 @@ async function generateSVG() {
     contentDiv.classList.add(`[transform]-[scale(${scale})]`, '[transform-origin]-[top_left]')
   }
 
-  temp.querySelectorAll('*').forEach(element => {
+  temp.querySelectorAll('*').forEach((element) => {
     new __tenoxui_core.MakeTenoxUI({ element, ...tenoxuiConfig }).useDOM()
   })
 
-  const removeAttributesAndElements = element => {
+  const removeAttributesAndElements = (element) => {
     if (element.tagName.toLowerCase() !== 'style') {
-      Array.from(element.attributes).forEach(attr => {
+      Array.from(element.attributes).forEach((attr) => {
         if (attr.name !== 'style') {
           element.removeAttribute(attr.name)
         }
       })
-      Array.from(element.children).forEach(child => {
+      Array.from(element.children).forEach((child) => {
         if (child.tagName.toLowerCase() !== 'style') {
           removeAttributesAndElements(child)
         }
