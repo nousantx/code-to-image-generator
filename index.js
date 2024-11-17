@@ -172,7 +172,7 @@ async function generateSVG() {
     <div xmlns="http://www.w3.org/1999/xhtml">${temp.innerHTML}</div>
   </foreignObject>
 </svg>`
-  console.log(data.replace(/>\s+</g, '><'))
+  
   return data.replace(/>\s+</g, '><')
 }
 
