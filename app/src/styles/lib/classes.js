@@ -1,36 +1,40 @@
-import { useLayoutEffect } from 'react'
-import { MakeTenoxUI } from '@tenoxui/core/full'
-import { property } from '@tenoxui/property'
-import { merge, createProperty } from '@nousantx/someutils'
-import { standardAttributes, reactAttributes } from '@nousantx/list-attribute'
-import { colors } from './color'
+import { merge, transformClasses } from '@nousantx/someutils'
 
-export const tenoxuiConfig = {
-  property: {
-    ...property,
-    ...createProperty(
-      {
-        bg: 'backgroundColor',
-        text: 'color',
-        'bdr-c': 'borderColor'
-      },
-      'rgb({0} / var(--{1}-opacity, 1))'
-    ),
-    bgc: 'backgroundColor',
-    bgi: 'backgroundImage',
-    'bg-opacity': '--bg-opacity',
-    'text-opacity': '--text-opacity',
-    shadow: '--shadow-color'
-  },
-  values: {
-    ...colors,
-    full: '100%',
-    family: {
-      code: 'JetBrains Mono, monospace',
-      sans: 'Inter, sans-serif'
+export const classes = merge(
+  transformClasses({
+    border: {
+      borderWidth: '1px',
+      borderStyle: 'solid',
+      borderColor: 'currentColor'
+    },
+    grid: {
+      '--g1': 'rgb(var(--grid-bg))',
+      '--g2': 'rgb(var(--grid-color))',
+      height: '16rem',
+      'background-image':
+        'linear-gradient(to right, var(--g2, blue) 1px, transparent 1px), linear-gradient(to bottom, var(--g2, red) 1px, transparent 1px)',
+      'background-size': '2.5rem 2.5rem',
+      'background-position': 'center center'
+    },
+    grid2: {
+      '--g1': 'rgb(var(--grid-bg))',
+      '--g2': 'rgb(var(--grid-color))',
+      height: '16rem',
+      'background-image':
+        'linear-gradient(to right, var(--g2, blue) 1px, transparent 1px), linear-gradient(to bottom, var(--g2, red) 1px, transparent 1px)',
+      'background-size': '2.5rem 2.5rem',
+      'background-position': 'center center'
+    },
+    'grid-dot': {
+      '--g1': 'rgb(var(--grid-color, 255 0 0))',
+      '--g2': 'rgb(var(--dot-color, 255 0 0)',
+      height: '16rem',
+      'background-image': 'radial-gradient(circle, var(--g2, red) 2px, var(--g1, red) 2px)',
+      'background-size': '2.5rem 2.5rem',
+      'background-position': 'center center'
     }
-  },
-  classes: {
+  }),
+  {
     display: {
       block: 'block',
       iblock: 'inline-block',
@@ -38,6 +42,9 @@ export const tenoxuiConfig = {
       iflex: 'inline-flex',
       center: 'flex',
       hidden: 'none'
+    },
+    flexDirection: {
+      'flex-col': 'column'
     },
     position: {
       relative: 'relative',
@@ -69,23 +76,5 @@ export const tenoxuiConfig = {
       'shadow-inner': 'inset 0 2px 4px 0 rgb(var(--shadow-color, 0 0 0) / var(--shadow-opa, 0.05))',
       'shadow-none': '0 0 #0000'
     }
-  },
-  attributify: true,
-  attributify: [...standardAttributes, ...reactAttributes]
-}
-
-export function init() {
-  useLayoutEffect(() => {
-    document.documentElement.setAttribute(
-      'child',
-      `
-(body): fw-500 bg-neutral-50 text-neutral-950;
-(textarea): w-100% h-mn-400px p-1rem over-x-scroll tw-nowrap;
-(.btn): [all]-unset h-40px d-inline-flex ai-center px-12px [cursor]-pointer bg-neutral-900 hover:bg-neutral-800 tr-time-300ms text-neutral-50 br-8px fs-14px fw-500;
-(.text): fw-500 ls--0.035em fs-14px;`
-    )
-    document.querySelectorAll('*').forEach((element) => {
-      new MakeTenoxUI({ element, ...tenoxuiConfig }).useDOM()
-    })
-  }, [])
-}
+  }
+)

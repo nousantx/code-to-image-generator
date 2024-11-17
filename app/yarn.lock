@@ -387,6 +387,11 @@
     "@prefresh/utils" "^1.2.0"
     "@rollup/pluginutils" "^4.2.1"
 
+"@remixicon/react@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@remixicon/react/-/react-4.5.0.tgz#5600d122ee4995bff2c4442cb056eeb4f11ecb5a"
+  integrity sha512-Xr20SxMpRNlgXZnoF5BCMyZuQEhXY3yJCyms8kxB/vJCCiV1nWdiO48XqRG5LBd1192iSHC4m658AIWi6rmBFg==
+
 "@rollup/pluginutils@^4.1.1", "@rollup/pluginutils@^4.2.1":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.2.1.tgz#e6c6c3aba0744edce3fb2074922d3776c0af2a6d"
@@ -678,6 +683,11 @@ lru-cache@^5.1.1:
   integrity sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==
   dependencies:
     yallist "^3.0.2"
+
+lucide-react@^0.460.0:
+  version "0.460.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.460.0.tgz#5681364b6bd94d1d475944f0385239c0b1408e35"
+  integrity sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==
 
 magic-string@0.30.5:
   version "0.30.5"
