@@ -1,150 +1,21 @@
 <!doctype html>
-<html
-  lang="en"
-  child="
-(body): fw-500 p-20px bgc-neutral-50 text-neutral-950;
-(textarea): w-100% h-mn-400px mb-10px p-1rem over-x-scroll tw-nowrap;
-(.btn): [all]-unset mr-10px h-40px d-inline-flex ai-center px-12px [cursor]-pointer bgc-neutral-900 hover:bgc-neutral-800 tr-time-300ms text-neutral-50 br-8px fs-14px fw-500;
-(canvas): [border]-[2px_solid_#ccc] mt-1rem;
-(#error): text-red mt-10px;
-(select, input): h-40px px-12px br-8px border-[1px_solid_#ccc] mr-10px;
-(.config-row): d-flex ai-center mb-10px flex-w-wrap;
-(.color-picker): h-40px w-60px [cursor]-pointer;
-(.template-grid): d-grid grid-cols-3 gap-10px mt-1rem;
-(.template-item): p-10px br-8px bgc-neutral-100 [cursor]-pointer hover:bgc-neutral-200 tr-time-300ms fw-500 ls--0.035em fs-14px;
-(.filter-controls): d-flex gap-10px mt-1rem;
-(.filter-slider): w-100px;
-(.text): fw-500 ls--0.035em fs-14px;
-"
->
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Enhanced HTML to Image Generator</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tenoxui/core@1.3.0-alpha.3/dist/tenoxui-full.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tenoxui/property@1.4.5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@nousantx/color-generator@1.4.1/dist/index.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@nousantx/someutils@0.3.1/dist/index.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@nousantx/list-attribute@0.1.0/dist/index.umd.min.js"></script>
+    <title>Vite + Preact</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="./index.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
       id="google-fonts"
     />
+    <script type="module" crossorigin src="/assets/index-BfECynuo.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-D-z3KsEn.css">
   </head>
   <body>
-    <header>
-      <h1 class="fs-3rem familt-poppins fw-600 ls--0.020em lh-1">TenoxUI Image Generator</h1>
-      <p class="mt-8px text">Its faster than light.</p>
-    </header>
-    <main class="mt-2rem w-mx-1440px mx-auto">
-      <div id="preview" class="box-1000px [border]-[2px_solid_#ccc] over-hidden"></div>
-
-      <!--
-        IMPORTANT: line-height & padding property needs to be adjusted for the generated image. Example:
-        
-        You use `line-height: 1;`, in tbe generated image, it will looks like the line-height is added 1, 1 = 2, 2 = 3, 0 = 1, and so on. 
-
-        For padding, if you specify the height, like width: 300px and then added padding: 2rem, you need to reduce width by the padding size. Likw this:
-        
-        { correctWidth = currentWidth - (padding * 2) }
-        
-        Then, if the width is 300px and the padding 2rem (4rem/64px, 2rem for left side, 2rem for right side) The correct width to use is 236px
-      -->
-      <textarea id="htmlInput" class="mt-2rem family-code">
-<div
-  class="[--g1]-purple-500 [--g2]-orange-500 p-3rem bg-[linear-gradient(125deg,_rgb(var(--g1)),_rgb(var(--g2)))] br-1rem family-code text-neutral-50 flex w-mn-450px w-min-content"
->
-  <div class="w-full br-1rem p-2rem bg-[rgb(0_0_0_/_0.6)] bdr-[2px_solid_#cccccc50]">
-    <div class="w-full relative center">
-      <div class="text-neutral-200 fw-500">index.ts</div>
-      <div class="center gap-8px absolute l-0" child="(div): box-16px br-100%;">
-        <div class="bgc-green-500"></div>
-        <div class="bgc-yellow-500"></div>
-        <div class="bgc-red-500"></div>
-      </div>
-    </div>
-    <div class="flex mt-2rem gap-2ch p-1ch lh-1">
-      <div class="fs-16px text-neutral-300 ta-right">
-        <p>1</p>
-        <p>2</p>
-        <p>11</p>
-      </div>
-      <div class="fs-16px text-neutral-200">
-        <p class="tw-nowrap italic text-neutral-500">// TenoxUI is a great css framework</p>
-        <p class="tw-nowrap">
-          <span class="text-orange-500">console</span>.<span class="text-blue-500">log</span>(<span
-            class="text-green-500"
-            >"Hello World!"</span
-          >)
-        </p>
-        <p class="tw-nowrap">
-          <span class="text-orange-400">console</span>.<span class="text-blue-400">log</span>(<span
-            class="text-green-400"
-            >"Hello World!"</span
-          >)
-        </p>
-      </div>
-    </div>
-  </div>
-</div></textarea
-      >
-
-      <!-- Add Objects -->
-      <div id="element-insert" class="config-row"></div>
-
-      <!-- Export Settings -->
-      <div class="config-row">
-        <select id="outputFormat">
-          <option value="png">PNG</option>
-          <option value="jpeg">JPEG</option>
-          <option value="webp">WebP</option>
-          <option value="svg">SVG</option>
-        </select>
-        <input type="number" id="scale" min="1" max="4" step="0.1" value="1" />
-        <label for="scale">Scale Factor</label>
-        <input type="number" id="width" value="1000" placeholder="Width" />
-        <input type="number" id="height" value="1000" placeholder="Height" />
-      </div>
-
-      <!-- Default Design -->
-
-      <!-- Template Grid -->
-      <div class="template-grid">
-        <div class="template-item" onclick="loadTemplate('start')">Starter</div>
-        <div class="template-item" onclick="loadTemplate('codesnap')">Code Snap</div>
-        <div class="template-item" onclick="loadTemplate('simple')">Simple Text</div>
-        <div class="template-item" onclick="loadTemplate('card')">Card Layout</div>
-        <div class="template-item" onclick="loadTemplate('banner')">Banner Design</div>
-      </div>
-
-      <div class="d-flex gap-20px mt-1rem">
-        <div class="flex-1">
-          <button class="btn" onclick="generateImage()">Generate Preview</button>
-          <button class="btn" onclick="downloadImage()">Download Image</button>
-          <button class="btn" onclick="saveDesign()">Save Design</button>
-          <input
-            type="file"
-            id="loadFile"
-            accept=".json"
-            style="display: none"
-            onchange="loadDesign(event)"
-          />
-          <button class="btn" onclick="document.getElementById('loadFile').click()">
-            Load Design
-          </button>
-          <div id="error"></div>
-          <canvas id="canvas" width="1000" height="1000"></canvas>
-        </div>
-      </div>
-    </main>
-
-    <script src="./tenoxui.config.js"></script>
-    <script src="./element-template.js"></script>
-    <script src="./live-preview.js"></script>
-    <script src="./index.js"></script>
+    <div id="app"></div>
   </body>
 </html>
