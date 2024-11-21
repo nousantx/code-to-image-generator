@@ -20,7 +20,7 @@ export function Colors() {
         (.color__wrapper): mt-12px pl-1rem flex flex-w-wrap;
         (.color__wrapper-shades): flex flex-col;
         (.color__shade-count): mt-6px text fs-12px text-neutral-700;
-        (.color__box): mt-8px ml--1rem box-56px rad-1rem shadow-md;
+        (.color__box): mt-8px ml--1rem box-56px br-1rem shadow-md;
       "
       >
         {colors.map((color) => (

@@ -10,3 +10,6 @@ export const tenoxuiConfig = {
   attributify: true,
   attributify: [...standardAttributes, ...reactAttributes]
 }
+
+export { property, values, classes }
+export default { tenoxuiConfig, property, values, classes }

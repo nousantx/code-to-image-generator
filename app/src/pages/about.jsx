@@ -1,9 +1,13 @@
 import { init } from '../styles/init'
+import CodeBlock from '../components/codeBlock.jsx'
 
 export const About = () => {
   init()
   return (
-    <article class="p-2rem w-mx-600px mx-auto">
+    <article
+      class="p-2rem w-mx-768px mx-auto"
+      child="(.code-block): mt-1rem p-1rem br-8px bg-slate-900 family-code tw-nowrap over-x-scroll text-green-400 fs-14px;"
+    >
       <header>
         <h1 class="heading1">What is this?</h1>
       </header>
@@ -14,20 +18,23 @@ export const About = () => {
         </p>
         <h2 class="mt-2.5rem heading2">Realtime Editor</h2>
         <p class="mt-1.5rem">
-          This website uses TenoxUI as its styling engine. The styles are applied directly to each
-          element's style attribute (inline-style).
+          This website uses <span class="light">TenoxUI</span> as its styling engine. The styles are
+          applied directly to each element's style attribute (inline-style).
         </p>
         <p class="mt-1rem">
           TenoxUI is particularly powerful for this use case because it doesn't need any server to
-          compute the styles.
+          compute the styles. (Client-side only)
         </p>
         <p class="mt-1rem">
-          You can access this from any device, as long as JavaScript is enabled.
-        </p>
-        <p class="mt-1rem">
-          The benefits of using tenoxui is you can use every css properties directly in your class
+          The benefits of using tenoxui is you can use every CSS properties directly in your class
           names. Example:
         </p>
+        <CodeBlock code={'<div class="[width,height]-200px [display]-flex">Hello World!</div>'} />
+        <p class="mt-1rem">And the output code will looks like this:</p>
+        <CodeBlock
+          code={'<div style="width: 200px; height: 200px; display: flex;">Hello World!</div>'}
+        />
+        <p class="mt-1rem">This styling approach can significantly faster to write CSS.</p>
 
         <h2 class="mt-2.5rem heading2">Image Generation</h2>
         <p class="mt-1.5rem">

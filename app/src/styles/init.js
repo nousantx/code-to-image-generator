@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react'
+import { useLayoutEffect } from 'preact/hooks'
 import { MakeTenoxUI } from '@tenoxui/core/full'
 import { globalStyles } from './lib/global'
 import { tenoxuiConfig as config } from './lib/config'
