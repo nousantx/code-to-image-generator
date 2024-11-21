@@ -77,7 +77,7 @@ export function App() {
         </div>
         <textarea
           value={htmlContent}
-          onChange={e => setHtmlContent(e.target.value)}
+          onChange={(e) => setHtmlContent(e.target.value)}
           className="main-input"
           placeholder="Enter HTML here..."
         />

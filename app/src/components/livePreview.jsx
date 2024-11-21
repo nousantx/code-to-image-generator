@@ -20,7 +20,7 @@ const Preview = forwardRef(({ htmlContent }, ref) => {
 
     function initializeTenoxUI(config) {
       tuiInstances.clear()
-      ref.current.querySelectorAll('*').forEach(element => {
+      ref.current.querySelectorAll('*').forEach((element) => {
         const instance = new MakeTenoxUI({
           element,
           ...config
@@ -42,11 +42,11 @@ const Preview = forwardRef(({ htmlContent }, ref) => {
   }, [htmlContent])
 
   const handleZoomIn = () => {
-    setZoom(prev => Math.min(prev + 10, 200))
+    setZoom((prev) => Math.min(prev + 10, 200))
   }
 
   const handleZoomOut = () => {
-    setZoom(prev => Math.max(prev - 10, 50))
+    setZoom((prev) => Math.max(prev - 10, 50))
   }
 
   const resetZoom = () => {

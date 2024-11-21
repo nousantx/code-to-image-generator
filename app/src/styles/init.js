@@ -6,7 +6,7 @@ import { tenoxuiConfig as config } from './lib/config'
 export function init() {
   useLayoutEffect(() => {
     document.documentElement.setAttribute('child', globalStyles)
-    document.querySelectorAll('*').forEach(element => {
+    document.querySelectorAll('*').forEach((element) => {
       new MakeTenoxUI({ element, ...config }).useDOM()
     })
   }, [])
