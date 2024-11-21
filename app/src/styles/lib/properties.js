@@ -11,6 +11,8 @@ export const property = {
     },
     'rgb({0} / var(--{1}-opacity, 1))'
   ),
+  all: 'all',
+  inset: 'inset',
   bgc: 'backgroundColor',
   bgi: 'backgroundImage',
   'bw-bottom': 'borderBottomWidth',
