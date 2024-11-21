@@ -1,15 +1,24 @@
 {
-  "name": "app",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@nousantx/tenoxui-image-generator-config",
+  "description": "The bundled TenoxUI configuration of code-to-image generator",
+  "version": "0.1.1",
+  "author": "NOuSantx <nousantx@gmail.com>",
+  "license": "MIT",
   "type": "module",
+  "main": "plugin/index.cjs",
+  "module": "plugin/index.esm.js",
+  "browser": "plugin/index.umd.js",
+  "files": [
+    "plugin/*",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:config": "rollup -c",
     "preview": "vite preview"
-  },
-  "dependencies": {
-    "preact": "^10.24.3"
   },
   "devDependencies": {
     "@nousantx/color-generator": "^1.4.1",
@@ -17,9 +26,15 @@
     "@nousantx/someutils": "^0.3.1",
     "@preact/preset-vite": "^2.9.1",
     "@remixicon/react": "^4.5.0",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
     "@tenoxui/core": "^1.3.0-alpha.3",
     "@tenoxui/property": "^1.4.5",
     "lucide-react": "^0.460.0",
+    "preact": "^10.24.3",
+    "preact-router": "^4.1.2",
+    "rollup": "^4.27.3",
     "vite": "^5.4.10"
   }
 }
