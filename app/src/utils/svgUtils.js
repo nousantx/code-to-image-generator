@@ -36,20 +36,20 @@ export async function generateSVG(htmlContent, width, height, scale) {
       contentDiv.classList.add(`[transform]-[scale(${scale})]`, '[transform-origin]-[top_left]')
     }
 
-    temp.querySelectorAll('*').forEach(element => {
+    temp.querySelectorAll('*').forEach((element) => {
       new MakeTenoxUI({ element, ...tenoxuiConfig }).useDOM()
     })
 
     // Enhanced attribute removal function
-    const removeAttributesAndElements = element => {
+    const removeAttributesAndElements = (element) => {
       if (element.tagName.toLowerCase() !== 'style') {
-        Array.from(element.attributes).forEach(attr => {
+        Array.from(element.attributes).forEach((attr) => {
           if (!DEFAULT_PRESERVED_ATTRIBUTES.includes(attr.name)) {
             element.removeAttribute(attr.name)
           }
         })
 
-        Array.from(element.children).forEach(child => {
+        Array.from(element.children).forEach((child) => {
           if (child.tagName.toLowerCase() !== 'style') {
             removeAttributesAndElements(child)
           }
