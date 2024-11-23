@@ -2,8 +2,6 @@ export const globalStyles = `
 (body): fw-500 bg-neutral-50 text-neutral-950;
 (.btn): [all]-unset h-40px d-inline-flex flex-parent-center px-12px [cursor]-pointer bg-neutral-900 hover:bg-neutral-800 tr-time-300ms text-neutral-50 br-8px fs-14px fw-500;
 (.btn.btn-icon): box-40px p-0;
-(.text): fw-500 ls--0.015em fs-1rem;
-(.text-sm): fs-0.875rem;
 (.heading1): fw-600 fs-2.5rem family-poppins lh-1 ls--0.035em;
 (.heading2): fw-500 fs-1.75rem family-poppins lh-1 ls--0.035em;
 (.heading3): fw-500 fs-1.35rem family-poppins lh-1 ls--0.040em;

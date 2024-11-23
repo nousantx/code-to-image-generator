@@ -15,7 +15,13 @@ export const property = {
   inset: 'inset',
   bgc: 'backgroundColor',
   bgi: 'backgroundImage',
+  'bw-top': 'borderTopWidth',
+  'bw-left': 'borderLeftWidth',
   'bw-bottom': 'borderBottomWidth',
+  'bw-right': 'borderRightWidth',    "br-t": [ "borderTopRightRadius", "borderTopLeftRadius" ],
+    "br-b": [ "borderBottomRightRadius", "borderBottomLeftRadius" ],
+    "br-l": [ "borderBottomLeftRadius", "borderTopLeftRadius" ],
+    "br-r": [ "borderBottomRightRadius", "borderTopRightRadius" ],
   'bg-opacity': '--bg-opacity',
   'text-opacity': '--text-opacity',
   'back-blur': {
