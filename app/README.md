@@ -16,7 +16,7 @@ The `box-` is the shorthand for css properties `width` and `height`, and `200px`
 
 ### Shorthands
 
-Under [properties.js](./src/styles/lib/properties.js), you can add class name prefix or shorthand for css properties or variables to make it easier to writing your style.
+Under [properties.js](./packages/config/lib/properties.js), you can add class name prefix or shorthand for css properties or variables to make it easier to writing your style.
 
 Example:
 
@@ -56,7 +56,7 @@ Without shorthands, your class names will looks like this:
 
 ### Aliases
 
-In [values.js](./src/styles/lib/values.js) file, you can add value aliases.
+In [values.js](./packages/config/lib/values.js) file, you can add value aliases.
 
 Example:
 
@@ -80,7 +80,7 @@ Usage:
 
 ### Creating Utility-first & Utility-class
 
-In [classes.js](./src/styles/lib/classes.js) file, you can define your utility classes easily.
+In [classes.js](./packages/config/lib/classes.js) file, you can define your utility classes easily.
 
 Example:
 
@@ -160,7 +160,7 @@ And you can actually apply the prefixes as well. Example:
 
 ### Adding Colors
 
-Under [color.js](./src/styles/lib/color.js) file, you can modify or add the colors you want, but make sure the color is **neutral** (not too light or dark).
+Under [color.js](./packages/config/lib/color.js) file, you can modify or add the colors you want, but make sure the color is **neutral** (not too light or dark).
 
 The color you included will generated as 11 shades color (50, 100, ..., 950). So, you dont have to worry aboud finding good color shades yourself.
 
@@ -194,7 +194,7 @@ Example:
 
 ### Adding Global Styles
 
-Under [global.js](./src/styles/lib/global.js) file, you can add styles for custom selector from string.
+Under [global.js](./packages/config/lib/global.js) file, you can add styles for custom selector from string.
 
 You can define the styles like this:
 
