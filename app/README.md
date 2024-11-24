@@ -1,12 +1,12 @@
-# image-generator app
+# Code-to-Image app
 
-Generate image from DOM.
+Generate image from html DOM.
 
-## Guide
+## Style Guide
 
 ### Add your first object
 
-Adding simple red square box by adding class names like this :
+Adding simple red square box by adding class names like this:
 
 ```html
 <div class="box-200px bg-red-500"></div>
@@ -14,7 +14,7 @@ Adding simple red square box by adding class names like this :
 
 The `box-` is the shorthand for css properties `width` and `height`, and `200px` is the value for both of them.
 
-### Shorthand
+### Shorthands
 
 Under [properties.js](./src/styles/lib/properties.js), you can add class name prefix or shorthand for css properties or variables to make it easier to writing your style.
 
@@ -54,7 +54,7 @@ Without shorthands, your class names will looks like this:
 <div class="[width,height]-200px [background-image]-[linear-gradient(to_right,_red,_blue)]"></div>
 ```
 
-### Alias
+### Aliases
 
 In [values.js](./src/styles/lib/values.js) file, you can add value aliases.
 
@@ -72,12 +72,13 @@ const values = {
 Usage:
 
 ```html
+<div class="[width]-full"></div>
 <div class="bg-its-not-red"></div>
 <div class="box-my-size bg-red"></div>
 <div class="box-200px bg-my-bg"></div>
 ```
 
-### Creating utility-first & utility-classes
+### Creating Utility-first & Utility-class
 
 In [classes.js](./src/styles/lib/classes.js) file, you can define your utility classes easily.
 
@@ -92,19 +93,34 @@ const utilityClasses = transformClasses({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+    /*
+     * .center {
+     *   display: flex;
+     *   justify-content: center;
+     *   align-items: center;
+     * }
+     */
   },
   border: {
     '--border-color': 'currentColor',
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: 'var(--border-color)'
+    /*
+     * .border {
+     *   --border-color: currentColor;
+     *   border-width: 1px;
+     *   border-style: 1px;
+     *   border-color: var(--border-color);
+     * }
+     */
   }
 })
 
 const utilityFirst = {
   display: {
-    flex: 'flex',
-    iflex: 'inline-flex'
+    flex: 'flex', // .flex { display: flex }
+    iflex: 'inline-flex' // .iflex { display: inline-flex }
     // ...
   },
   fontSize: {
@@ -120,10 +136,11 @@ const utilityFirst = {
   // You can also stacking the class name to make it similar to regular css.
   // Example: We already define `text-2xl` to set the font-size, and now lets add the lineHeight as well.
   lineHeight: {
-    'text-2xl': '1.2'
+    'text-2xl': '1.2' // .text-2xl { font-size: 4rem; line-height: 1.2; }
   }
 }
 
+// merge the classes with custom merge function
 const classes = merge(utilityFirst, utilityClasses)
 ```
 
@@ -137,11 +154,11 @@ Usage:
 And you can actually apply the prefixes as well. Example:
 
 ```html
-<div class="box-200px hover:center hover:border text-2xl">Hello</div>
+<div class="box-200px text-2xl hover:center focus:border">Hello</div>
 <div class="flex hover:iflex text-sm hover:text-2xl font-medium hover:font-normal"></div>
 ```
 
-### Change or add colors
+### Adding Colors
 
 Under [color.js](./src/styles/lib/color.js) file, you can modify or add the colors you want, but make sure the color is **neutral** (not too light or dark).
 
@@ -173,4 +190,34 @@ Example:
 <div class="text-primary-950 bg-primary-50"></div>
 <div class="bg-red-500"></div>
 <div class="bg-my-awesome-color-300"></div>
+```
+
+### Adding Global Styles
+
+Under [global.js](./src/styles/lib/global.js) file, you can add styles for custom selector from string.
+
+You can define the styles like this:
+
+```
+({selector}): {styles};
+```
+
+Example:
+
+```javascript
+const globals = `
+  (body): bg-neutral-100 m-0;
+  (.wrapper): w-mx-1200px mx-auto p-1rem;
+  (.wrapper .title): fs-2.5rem fw-600;
+`
+```
+
+NOTE: The defined styles will later included into `<html>` tag's `child` attribute, this is tenoxui attributify feature to give styles for child elements. And if you put the string inside `<html>` tag, the styles is accessible to all elements.
+
+Example:
+
+```html
+<html child="(body): bg-red;">
+  ...
+</html>
 ```
