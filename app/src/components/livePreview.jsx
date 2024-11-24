@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from 'preact/hooks'
 import { forwardRef } from 'preact/compat'
 import { MakeTenoxUI } from '@tenoxui/core/full'
-import { tenoxuiConfig, init } from '../styles/init'
+import { config as tenoxuiConfig, init } from '../styles/init'
 import {
   RiExpandDiagonalLine,
   RiImage2Line,

@@ -1,8 +1,11 @@
 import { init } from '../styles/init'
-import { color } from '../styles/lib/color'
+import { color } from '@app/packages/config/lib/color'
 
+// Get color names
 const colors = Object.keys(color)
+// Or just display few colors
 // const colors = ['red', 'pink']
+
 const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
 
 export function Colors() {

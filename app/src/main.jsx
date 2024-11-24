@@ -1,5 +1,5 @@
 import { render } from 'preact'
-import './styles/index.css'
+import './css/index.css'
 import { App } from './app'
 import { Root } from './root'
 
