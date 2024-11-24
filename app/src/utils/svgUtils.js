@@ -1,29 +1,7 @@
 import { MakeTenoxUI } from '@tenoxui/core/full'
-import { tenoxuiConfig } from '../styles/init'
+import { config as tenoxuiConfig } from '@app/packages/config'
 import { getGoogleFontsStyles } from './fontUtils'
-
-// Define attributes to preserve
-const DEFAULT_PRESERVED_ATTRIBUTES = [
-  'style',
-  'xmlns',
-  'width',
-  'height',
-  'viewBox',
-  'd',
-  'fill',
-  'path',
-  'id',
-  'x1',
-  'x2',
-  'y1',
-  'y2',
-  'gradientUnits',
-  'gradientTransform',
-  'offset',
-  'stop-color',
-  'opacity',
-  'href'
-]
+import { removeAttributesAndElements } from './removeAttributes'
 
 export async function generateSVG(htmlContent, width, height, scale) {
   try {
@@ -39,23 +17,6 @@ export async function generateSVG(htmlContent, width, height, scale) {
     temp.querySelectorAll('*').forEach((element) => {
       new MakeTenoxUI({ element, ...tenoxuiConfig }).useDOM()
     })
-
-    // Enhanced attribute removal function
-    const removeAttributesAndElements = (element) => {
-      if (element.tagName.toLowerCase() !== 'style') {
-        Array.from(element.attributes).forEach((attr) => {
-          if (!DEFAULT_PRESERVED_ATTRIBUTES.includes(attr.name)) {
-            element.removeAttribute(attr.name)
-          }
-        })
-
-        Array.from(element.children).forEach((child) => {
-          if (child.tagName.toLowerCase() !== 'style') {
-            removeAttributesAndElements(child)
-          }
-        })
-      }
-    }
 
     removeAttributesAndElements(temp)
 
