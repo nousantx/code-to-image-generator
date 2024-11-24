@@ -1,8 +1,8 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import terser from '@rollup/plugin-terser'
-import fs from 'node:fs'
-import path from 'node:path'
 
 const packageJson = JSON.parse(fs.readFileSync(path.resolve('package.json'), 'utf-8'))
 
@@ -14,7 +14,7 @@ const banner = `/*!
  *
  * Built Date: ${new Date().toString()}
  */`
-console.log(banner)
+
 const terserConfig = {
   format: {
     comments: false,
@@ -27,31 +27,28 @@ const terserConfig = {
 }
 
 const config = {
-  input: './src/styles/lib/config.js',
+  input: './packages/config/index.js',
   output: [
     {
       file: 'plugin/index.cjs',
       format: 'cjs',
       exports: 'named',
-      banner,
-      plugins: [terser(terserConfig)]
+      banner
     },
     {
       file: 'plugin/index.umd.js',
       format: 'umd',
       name,
       banner,
-      exports: 'named',
-      plugins: [terser(terserConfig)]
+      exports: 'named'
     },
     {
       file: 'plugin/index.esm.js',
       format: 'es',
-      banner,
-      plugins: [terser(terserConfig)]
+      banner
     }
   ],
-  plugins: [resolve(), commonjs()]
+  plugins: [resolve(), commonjs(), terser(terserConfig)]
 }
 
 export default config

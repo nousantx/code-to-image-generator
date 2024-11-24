@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'preact/hooks'
 import { MakeTenoxUI } from '@tenoxui/core/full'
-import { globalStyles } from './lib/global'
-import { tenoxuiConfig as config } from './lib/config'
+import { globalStyles } from '@app/packages/config/lib/global'
+import { config } from '@app/packages/config'
 
 export function init() {
   useLayoutEffect(() => {
@@ -12,4 +12,4 @@ export function init() {
   }, [])
 }
 
-export { tenoxuiConfig } from './lib/config'
+export { config } from '@app/packages/config'
