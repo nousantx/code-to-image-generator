@@ -10,7 +10,6 @@ export const color = {
   amber: '#f49c09',
   gold: '#ffd700',
   yellow: '#f1c230',
-  chartreuse: '#7fff00',
   lime: '#91e411',
   green: '#15e05f',
   emerald: '#13cb8e',
@@ -25,8 +24,7 @@ export const color = {
   violet: '#7844f0',
   purple: '#a855f7',
   lilac: '#bb77bb',
-  magenta: '#ff00ff',
-  fuchsia: '#d642ec',
+  fuchsia: '#d946ef',
   pink: '#f32d8f',
   rose: '#eb3756',
   slate: '#636c7c',
@@ -34,13 +32,12 @@ export const color = {
   gray: '#696a6a',
   neutral: '#737373',
   olive: '#e2e200',
-  beige: '#f5f5dc',
-  khaki: '#c3b091',
-  tan: '#d2b48c',
+  beige: '#d8ca8a',
   bronze: '#cd7f32',
   chocolate: '#d2691e',
-  sienna: '#882d17',
-  sepia: '#704214'
+  apricot: '#FFB06B',
+  sienna: '#b74226',
+  terracotta: '#e85336'
 }
 
 export const colors = generateColors({

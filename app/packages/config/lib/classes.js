@@ -74,7 +74,22 @@ const propertyBased = {
   fontStyle: {
     italic: 'italic'
   },
+  '--ring-offset-width': {
+    'ring-offset-0': '0px',
+    'ring-offset-1': '1px',
+    'ring-offset-2': '2px',
+    'ring-offset-4': '4px',
+    'ring-offset-8': '8px'
+  },
+  '--ring-offset': {
+    'ring-offset-0': '0 0 0 var(--ring-offset-width) rgb(var(--ring-offset-color, 0 0 0))',
+    'ring-offset-1': '0 0 0 var(--ring-offset-width) rgb(var(--ring-offset-color, 0 0 0))',
+    'ring-offset-2': '0 0 0 var(--ring-offset-width) rgb(var(--ring-offset-color, 0 0 0))',
+    'ring-offset-4': '0 0 0 var(--ring-offset-width) rgb(var(--ring-offset-color, 0 0 0))',
+    'ring-offset-8': '0 0 0 var(--ring-offset-width) rgb(var(--ring-offset-color, 0 0 0))'
+  },
   boxShadow: {
+    // shadow
     'shadow-sm': '0 1px 2px 0 rgb(var(--shadow-color, 0 0 0) / var(--shadow-opa, 0.05))',
     shadow:
       '0 1px 3px 0 rgb(var(--shadow-color, 0 0 0) / var(--shadow-opa, 0.1)), 0 1px 2px -1px rgb(var(--shadow-color, 0 0 0) / var(--shadow-opa, 0.1))',
@@ -86,7 +101,20 @@ const propertyBased = {
       '0 20px 25px -5px rgb(var(--shadow-color, 0 0 0) / var(--shadow-opa, 0.1)), 0 8px 10px -6px rgb(var(--shadow-color, 0 0 0) / var(--shadow-opa, 0.1))',
     'shadow-2xl': '0 25px 50px -12px rgb(var(--shadow-color, 0 0 0) / var(--shadow-opa, 0.25))',
     'shadow-inner': 'inset 0 2px 4px 0 rgb(var(--shadow-color, 0 0 0) / var(--shadow-opa, 0.05))',
-    'shadow-none': '0 0 #0000'
+    'shadow-none': '0 0 #0000',
+    // ring
+    'ring-0':
+      'var(--ring-offset), 0 0 0 calc(0px + var(--ring-offset-width)) rgb(var(--ring-color, 0 0 0))',
+    'ring-1':
+      'var(--ring-offset), 0 0 0 calc(1px + var(--ring-offset-width)) rgb(var(--ring-color, 0 0 0))',
+    'ring-2':
+      'var(--ring-offset), 0 0 0 calc(2px + var(--ring-offset-width)) rgb(var(--ring-color, 0 0 0))',
+    ring: 'var(--ring-offset), 0 0 0 calc(3px + var(--ring-offset-width)) rgb(var(--ring-color, 0 0 0))',
+    'ring-4':
+      'var(--ring-offset), 0 0 0 calc(4px + var(--ring-offset-width)) rgb(var(--ring-color, 0 0 0))',
+    'ring-8':
+      'var(--ring-offset), 0 0 0 calc(8px + var(--ring-offset-width)) rgb(var(--ring-color, 0 0 0))',
+    'ring-inset': 'inset 0 0 0 0 rgb(var(--ring-color, 0 0 0))'
   }
 }
 
