@@ -15,7 +15,12 @@
   "main": "plugin/index.cjs",
   "module": "plugin/index.esm.js",
   "browser": "plugin/index.umd.js",
-  "files": ["plugin/*", "package.json", "LICENSE", "README.md"],
+  "files": [
+    "plugin/*",
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",

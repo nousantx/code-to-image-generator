@@ -20,15 +20,15 @@ const DEFAULT_PRESERVED_ATTRIBUTES = [
   'href'
 ]
 
-export const removeAttributes = element => {
+export const removeAttributes = (element) => {
   if (element.tagName.toLowerCase() !== 'style') {
-    Array.from(element.attributes).forEach(attr => {
+    Array.from(element.attributes).forEach((attr) => {
       if (!DEFAULT_PRESERVED_ATTRIBUTES.includes(attr.name)) {
         element.removeAttribute(attr.name)
       }
     })
 
-    Array.from(element.children).forEach(child => {
+    Array.from(element.children).forEach((child) => {
       if (child.tagName.toLowerCase() !== 'style') {
         removeAttributes(child)
       }

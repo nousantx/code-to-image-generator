@@ -35,7 +35,7 @@ export const property = {
     property: 'backdropFilter',
     value: 'blur({0})'
   },
-  "use-transform": {
+  'use-transform': {
     property: 'transform',
     value:
       'rotate(var(--tui_rotate, 0))\nrotateY(var(--tui_rotate-y, 0))\nrotateX(var(--tui_rotate-x, 0))\nrotateZ(var(--tui_rotate-z, 0))\nscale(var(--tui_scale, 1))\nscaleY(var(--tui_scale-y, 1))\nscaleX(var(--tui_scale-x, 1))\nscaleZ(var(--tui_scale-z, 1))\nskew(var(--tui_skew, 0))\nskewY(var(--tui_skew-y, 0))\nskewX(var(--tui_skew-x, 0))\ntranslate(var(--tui_translate, 0))\ntranslateY(var(--tui_translate-y, 0))\ntranslateX(var(--tui_translate-x, 0))\ntranslateZ(var(--tui_translate-z, 0))'
