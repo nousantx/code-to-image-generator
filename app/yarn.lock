@@ -351,6 +351,11 @@
   resolved "https://registry.yarnpkg.com/@nousantx/someutils/-/someutils-0.3.1.tgz#f19ae4ff4b59c7ada1cd0c9f3c49ce961bafca39"
   integrity sha512-0dFsKu/x4rCA460MGXEC+xCRqlXCiPNKBK0wRRwIoXkS1F7lGk8s5wywqwu5ZBI8HZrWCKzZzhSxH0iI2bz6Jw==
 
+"@nousantx/tenoxui-utility-styles@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@nousantx/tenoxui-utility-styles/-/tenoxui-utility-styles-0.1.0.tgz#c91aed54b106dfdbd899ea9b19b85525d419ec73"
+  integrity sha512-Km58Ga6P0idFy5F97LO8/qS64PCrlRtELGVz9KvFcSO8xJ7JcnlD47+KZXCPUg1Vna7wAK8N0Dv9cKxleyds0Q==
+
 "@preact/preset-vite@^2.9.1":
   version "2.9.1"
   resolved "https://registry.yarnpkg.com/@preact/preset-vite/-/preset-vite-2.9.1.tgz#489c4c4f6ca9122a25b9cb577563e8fd09bd9865"

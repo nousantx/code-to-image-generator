@@ -5,7 +5,6 @@ import { App } from './app'
 import { init } from './styles/init'
 import { Colors } from './pages/colors'
 import { About } from './pages/about'
-import { Guide } from './pages/guide'
 
 import { useLayoutEffect } from 'react'
 
@@ -31,14 +30,8 @@ export const Root = () => {
         <Link class={navClass} activeClassName={navClassActive} href="/about">
           About
         </Link>
-        <Link class={navClass} activeClassName={navClassActive} href="/guide">
-          Guide
-        </Link>
         <Link class={navClass} activeClassName={navClassActive} href="/colors">
           Colors
-        </Link>
-        <Link class={navClass} activeClassName={navClassActive} href="/test">
-          Test Only
         </Link>
       </nav>
 
@@ -46,9 +39,7 @@ export const Root = () => {
       <Router>
         <App path="/" />
         <About path="/about" />
-        <Guide path="/guide" />
         <Colors path="/colors" />
-        <Test path="/test" />
       </Router>
     </div>
   )
