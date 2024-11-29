@@ -1,7 +1,7 @@
 import { MakeTenoxUI } from '@tenoxui/core/full'
 import { config as tenoxuiConfig } from '@app/packages/config'
 import { getGoogleFontsStyles } from './fontUtils'
-import { removeAttributesAndElements } from './removeAttributes'
+import { removeAttributes } from './removeAttributes'
 
 export async function generateSVG(htmlContent, width, height, scale) {
   try {
@@ -18,7 +18,7 @@ export async function generateSVG(htmlContent, width, height, scale) {
       new MakeTenoxUI({ element, ...tenoxuiConfig }).useDOM()
     })
 
-    removeAttributesAndElements(temp)
+    removeAttributes(temp)
 
     const svgData = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">

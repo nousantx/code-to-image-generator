@@ -1,5 +1,6 @@
 import { useCallback } from 'preact/hooks'
 import { generateSVG } from '../utils/svgUtils'
+import { generateHTML } from '../utils/htmlUtils'
 
 export function useImageGeneration(
   canvasRef,
@@ -47,6 +48,11 @@ export function useImageGeneration(
         const svgData = await generateSVG(htmlContent, width * scale, height * scale, scale)
         const blob = new Blob([svgData], { type: 'image/svg+xml' })
         link.href = URL.createObjectURL(blob)
+      } else if (outputFormat === 'html') {
+        const htmlTemplate = await generateHTML(htmlContent)
+        const blob = new Blob([htmlTemplate], { type: 'text/html' })
+        link.href = URL.createObjectURL(blob)
+        link.download = 'generated-content.html'
       } else {
         await generateImage()
         link.href = canvasRef.current.toDataURL(`image/${outputFormat}`)

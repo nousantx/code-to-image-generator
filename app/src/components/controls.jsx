@@ -180,6 +180,7 @@ export default function Controls({
               <option value="jpeg">JPEG</option>
               <option value="webp">WebP</option>
               <option value="svg">SVG</option>
+              <option value="html">HTML</option>
             </select>
           </label>
         </div>
@@ -187,10 +188,10 @@ export default function Controls({
       </div>
       <div className="d-flex flex-w-wrap mt-1rem gap-8px">
         <button onClick={generateImage} className="btn">
-          Generate Preview Image
+          Generate Preview
         </button>
         <button onClick={downloadImage} className="btn">
-          Download Image
+          Download
         </button>
         <button onClick={saveDesign} className="btn">
           Save Design
