@@ -1,8 +1,15 @@
+<p align='center'>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/nousantx/test-svg-image/blob/main/.github/logo-light.png">
+    <img alt="Mojo CSS" width="100%" src="https://github.com/nousantx/test-svg-image/blob/main/.github/logo-dark.png">
+  </picture>
+</p>
+
 # Image Generator
 
 A very lightweight and simple code-to-image generator. You can use every CSS properties inside your element's class name or as html attributes or even use the predefined CSS property shorthands and it will converted into inline-styles.
 
-The element will saved inside SVG's `foreignObject` before it got displayed on a canvas. It's easier to use inline-styles instead of using class names for the element. And that's where tenoxui do its magic, tenoxui will convert those class names, and the  apply them to the element.
+The element will saved inside SVG's `foreignObject` before it got displayed on a canvas. It's easier to use inline-styles instead of using class names for the element. And that's where tenoxui do its magic, tenoxui will convert those class names, and the apply them to the element.
 
 ## Features
 
@@ -12,18 +19,16 @@ The element will saved inside SVG's `foreignObject` before it got displayed on a
 - **Save & Load** - Save your current code to a json file and load them later
 - **Templates** - Use various starter templates
 
-
 ## Example
 
 To add a simple box, you can just write something like this :
 
 ```html
-<div class='[width,height]-200px [background]-red'></div>
+<div class="[width,height]-200px [background]-red"></div>
 ```
 
 Or use predefined shorthands :
 
 ```html
-<div class='box-200px bg-red'></div>
+<div class="box-200px bg-red"></div>
 ```
-
