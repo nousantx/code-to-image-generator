@@ -1,7 +1,7 @@
 <p align='center'>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://github.com/nousantx/test-svg-image/blob/main/.github/logo-light.png">
-    <img alt="Mojo CSS" width="100%" src="https://github.com/nousantx/test-svg-image/blob/main/.github/logo-dark.png">
+    <img alt="Code to Image Logo" width="100%" src="https://github.com/nousantx/test-svg-image/blob/main/.github/logo-dark.png">
   </picture>
 </p>
 
