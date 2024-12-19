@@ -9,10 +9,11 @@ export async function generateSVG(htmlContent, width, height, scale) {
     const temp = document.createElement('div')
     temp.innerHTML = htmlContent
 
-    const contentDiv = temp.querySelector('div')
-    if (contentDiv) {
-      contentDiv.classList.add(`[transform]-[scale(${scale})]`, '[transform-origin]-[top_left]')
+    const firstChild = temp.firstElementChild
+    if (firstChild) {
+      firstChild.classList.add(`[transform]-[scale(${scale})]`, '[transform-origin]-[top_left]')
     }
+
 
     temp.querySelectorAll('*').forEach((element) => {
       new MakeTenoxUI({ element, ...tenoxuiConfig }).useDOM()
