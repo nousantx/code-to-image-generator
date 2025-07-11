@@ -12,6 +12,9 @@ importers:
         specifier: ^10.25.3
         version: 10.26.9
     devDependencies:
+      '@nguraijs/core':
+        specifier: ^0.1.0
+        version: 0.1.0
       '@preact/preset-vite':
         specifier: ^2.9.3
         version: 2.10.2(@babel/core@7.28.0)(preact@10.26.9)(vite@6.3.5(@types/node@22.16.2)(terser@5.43.1))
@@ -316,6 +319,9 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.29':
     resolution: {integrity: sha512-uw6guiW/gcAGPDhLmd77/6lW8QLeiV5RUTsAX46Db6oLhGaVj4lhnPwb184s1bkc8kdVg/+h988dro8GRDpmYQ==}
+
+  '@nguraijs/core@0.1.0':
+    resolution: {integrity: sha512-29qXhi3ypUrUTif/o/XwH//BP91OfD57cWp/g9rcnxWpROjYiUs7/Jk9wWarhJfoWbR41XCX+eXvwbiYG338zQ==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1052,6 +1058,8 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.4
+
+  '@nguraijs/core@0.1.0': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
