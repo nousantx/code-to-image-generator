@@ -1,32 +1,29 @@
 {
-  "name": "@nousantx/tenoxui-image-tool",
-  "version": "0.1.0",
-  "description": "Image generation library with built-in tenoxui as default styling",
+  "name": "@nousantx/code-to-image",
   "author": "NOuSantx <nousantx@gmail.com>",
-  "license": "MIT",
-  "homepage": "https://github.com/nousantx/tui-image-generator#readme",
-  "keywords": [
-    "keywords"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nousantx/tui-image-generator.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nousantx/tui-image-generator/issues"
-  },
-  "files": [
-    "dist",
-    "package.json",
-    "README.md",
-    "LICENSE"
-  ],
+  "private": true,
+  "version": "1.0.0",
   "type": "module",
-  "types": "index.d.ts",
-  "main": "index.js",
-  "module": "index.esm.js",
-  "style": "index.css",
   "scripts": {
-    "start": "echo 'hello world'"
-  }
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "preact": "^10.25.3"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.9.3",
+    "@remixicon/react": "^4.6.0",
+    "@tenoxui/core": "^2.0.0",
+    "@tenoxui/moxie": "^0.7.1",
+    "@tenoxui/preset-tailwind": "^1.0.2",
+    "@types/node": "^22.10.2",
+    "preact-router": "^4.1.2",
+    "tenoxui": "^1.0.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5",
+    "vite-plugin-tenoxui-beta": "0.1.0-alpha.3"
+  },
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
 }
