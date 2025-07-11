@@ -32,7 +32,7 @@ const Preview = forwardRef(({ htmlContent }, ref) => {
   }
 
   return (
-    <div className="bg-neutral-50 text-neutral-800 border-2px border-neutral-100 rounded-1rem">
+    <div className="bg-neutral-50 text-neutral-800 border-2px border-neutral-100 rounded-1rem shadow-xl">
       <div class="flex items-center justify-between p-1.5rem text-neutral-800 border-b-2px border-neutral-100">
         <div class="flex items-center justify-center gap-4px">
           <RiImage2Line size="16" />
@@ -40,8 +40,8 @@ const Preview = forwardRef(({ htmlContent }, ref) => {
         </div>
 
         <div className="flex items-center gap-8px">
-          <div class="flex items-center justify-center gap-8px h-28px w-46px border border-neutral-100 rounded-6px">
-            <span className="fs-12px lh-1 ls--0.015em">{zoom}</span>
+          <div class="flex items-center justify-center gap-8px h-30px w-46px border border-neutral-100 rounded-sm">
+            <span className="text-xs leading-normal h-2ch">{zoom}</span>
           </div>
           <button onClick={handleZoomOut} className="btn--live-prev" aria-label="Zoom out">
             <RiZoomOutLine size="16" />
