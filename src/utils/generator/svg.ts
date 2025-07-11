@@ -1,5 +1,7 @@
 import { fontCache } from '../parseFont'
-import { render, cleanHTMLAttributes } from '@tenoxui-lib'
+import { render, cleanHTMLAttributes, config } from '@tenoxui-lib'
+import { TenoxUI } from 'tenoxui'
+import { preflight, defaultProperties } from '@tenoxui/preset-tailwind'
 
 export async function generateSVG(
   htmlContent: string,
@@ -31,10 +33,13 @@ export async function generateSVG(
   <defs>
     <style type="text/css">
       ${fontFaceRules}
+      ${new TenoxUI(config).render(defaultProperties, preflight, {
+        ':root': "[--tw-default-font-sans]-Inter [--tw-default-font-mono]-['JetBrains_Mono']"
+      })}
     </style>
   </defs>
   <foreignObject width="100%" height="100%">
-    <div xmlns="http://www.w3.org/1999/xhtml">${temp.innerHTML}</div>
+    <html xmlns="http://www.w3.org/1999/xhtml">${temp.innerHTML}</html>
   </foreignObject>
 </svg>`
 
