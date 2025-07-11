@@ -1,9 +1,9 @@
-import { Ngurai } from '@nguraijs/core'
+import { Ngurai, Token } from '@nguraijs/core'
 import { html } from './preset'
 
 export const tokenizer = new Ngurai(html)
 
-export function processTokens(tokens) {
+export function processTokens(tokens: Token[][]): string {
   return tokens
     .map((line) =>
       line

@@ -1,4 +1,6 @@
-export const html = {
+import { Config } from '@nguraijs/core'
+
+export const html: Config = {
   keywords: [
     'div',
     'span',
