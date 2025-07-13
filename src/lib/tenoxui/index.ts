@@ -80,3 +80,4 @@ function render(node: Document | Element): void {
 }
 
 export { render, cleanHTMLAttributes }
+export { default as config } from './config'

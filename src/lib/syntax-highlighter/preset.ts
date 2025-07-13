@@ -1,4 +1,4 @@
-import { Config } from '@nguraijs/core'
+import type { Config } from '@nguraijs/core'
 
 export const html: Config = {
   keywords: [

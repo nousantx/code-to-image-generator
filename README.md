@@ -27,8 +27,9 @@ To add a simple box, you can just write something like this :
 <div class="[width,height]-200px [background]-red"></div>
 ```
 
-Or use predefined shorthands :
+Or use utility classes to make your life easier :
 
 ```html
-<div class="box-200px bg-red"></div>
+<div class="size-200px bg-red"></div>
+<div class="size-40 bg-teal-500"></div>
 ```

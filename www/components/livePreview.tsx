@@ -32,44 +32,48 @@ const Preview = forwardRef(({ htmlContent }, ref) => {
   }
 
   return (
-    <div className="bg-neutral-50 text-neutral-800 border-2px border-neutral-100 rounded-1rem shadow-xl">
-      <div class="flex items-center justify-between p-1.5rem text-neutral-800 border-b-2px border-neutral-100">
-        <div class="flex items-center justify-center gap-4px">
-          <RiImage2Line size="16" />
-          <span>Live Preview</span>
-        </div>
-
-        <div className="flex items-center gap-8px">
-          <div class="flex items-center justify-center gap-8px h-30px w-46px border border-neutral-100 rounded-sm">
-            <span className="text-xs leading-normal h-2ch">{zoom}</span>
-          </div>
-          <button onClick={handleZoomOut} className="btn--live-prev" aria-label="Zoom out">
-            <RiZoomOutLine size="16" />
-          </button>
-
-          <button onClick={handleZoomIn} className="btn--live-prev" aria-label="Zoom in">
-            <RiZoomInLine size="16" />
-          </button>
-
-          <button onClick={resetZoom} className="btn--live-prev" aria-label="Reset zoom">
-            <RiResetLeftLine size="16" />
-          </button>
-        </div>
+    <section className="bg-neutral-50 text-neutral-800 border border-neutral-200 rounded-1rem shadow-xl overflow-hidden">
+      <div className="px-2 h-30px flex items-center text-xs font-mono text-neutral-500 bg-neutral-100 border-b border-neutral-200">
+        Live Preview
       </div>
-
-      <div class="p-1rem">
-        <div className="relative overflow-auto border-2px rounded-1rem p-4rem h-600px border-neutral-100">
+      <div className="p-4 bg-neutral-50">
+        <div className="relative overflow-scroll border rounded-1rem p-4rem h-400px lg:h-600px border-neutral-200 bg-emerald-50">
           <div
             id="preview"
             ref={ref}
-            className={`[transform-origin]-[top_left] w-max`}
+            className={`[transform-origin]-[center] w-max`}
             style={{
               transform: `scale(${zoom / 100})`
             }}
           />
         </div>
       </div>
-    </div>
+      <div className="flex items-center justify-center text-neutral-500 bg-neutral-100 border-t border-neutral-200 gap-8px">
+        <button
+          onClick={handleZoomOut}
+          className="hover:bg-neutral-200 transition-colors duration-300 size-30px flex items-center justify-center"
+          aria-label="Zoom out"
+        >
+          <RiZoomOutLine size="16" />
+        </button>
+
+        <button
+          onClick={handleZoomIn}
+          className="hover:bg-neutral-200 transition-colors duration-300 size-30px flex items-center justify-center"
+          aria-label="Zoom in"
+        >
+          <RiZoomInLine size="16" />
+        </button>
+
+        <button
+          onClick={resetZoom}
+          className="hover:bg-neutral-200 transition-colors duration-300 size-30px flex items-center justify-center"
+          aria-label="Reset zoom"
+        >
+          <RiResetLeftLine size="16" />
+        </button>
+      </div>
+    </section>
   )
 })
 

@@ -27,6 +27,7 @@ export default function Controls({
   outputFormat,
   setOutputFormat,
   error,
+  setError,
   generateImage,
   downloadImage,
   saveDesign,
@@ -102,8 +103,27 @@ export default function Controls({
     }
   }
 
-  const handleTemplateClick = (template) => {
-    setHtmlContent(templates[template])
+  const handleTemplateClick = (name) => {
+    const { template, width, height, scale } = templates[name]
+    setHtmlContent(template)
+    if (width) {
+      setLocalWidth(width)
+      setWidth(width)
+    }
+    if (height) {
+      setLocalHeight(height)
+      setHeight(height)
+    }
+    if (scale) {
+      if (scale <= 5) {
+        setLocalScale(scale)
+        setScale(scale)
+      } else {
+        setError("Scale can't be bigger than 5!")
+        setLocalScale(1)
+        setScale(1)
+      }
+    }
   }
 
   return (

@@ -1,7 +1,10 @@
-import { TenoxUI } from 'tenoxui'
-import config from './tenoxui.config.js'
+import { Ngurai } from '@nguraijs/core'
+import { html } from './src/lib/syntax-highlighter/preset.ts'
 
-const ui = new TenoxUI(config.css)
+const urx = new Ngurai(html)
+const code = "<div class='bg-red'></div>\n"
+console.time('X')
+const tokens = urx.process(code.repeat(200000))
+console.timeEnd('X')
 
-console.log(ui.render('border border-solid border-red'))
-console.log(config.css.apply)
+console.log(urx.process(code))
