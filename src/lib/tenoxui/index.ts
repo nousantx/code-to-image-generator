@@ -1,7 +1,4 @@
 import { TenoxUI } from 'tenoxui'
-import { preflight, defaultProperties } from '@tenoxui/preset-tailwind'
-import { toKebabCase } from './utils/toKebab'
-import { cleanHTMLAttributes } from './utils/cleanAttr'
 import config from './config'
 
 interface StyleRules {
@@ -23,5 +20,5 @@ function render(node: Document | Element): string {
   return ui.render(Array.from(new Set(classNames)))
 }
 
-export { ui, render, cleanHTMLAttributes }
+export { ui, render }
 export { default as config } from './config'

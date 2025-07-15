@@ -1,4 +1,4 @@
-import css from './src/lib/tenoxui/config/index.ts'
+import css from './src/lib/tenoxui/config.ts'
 import { defaultProperties, preflight } from '@tenoxui/preset-tailwind'
 
 export default {

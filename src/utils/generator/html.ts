@@ -4,9 +4,7 @@ import { styles } from '@/styles'
 export const generateHTML = async (htmlContent: string): Promise<string> => {
   const temp = document.createElement('div')
   temp.innerHTML = htmlContent
-
   const googleFontsLink = document.getElementById('google-fonts') as HTMLLinkElement | null
-
   const htmlTemplate = `<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,6 +21,5 @@ export const generateHTML = async (htmlContent: string): Promise<string> => {
     ${temp.innerHTML}
   </body>
 </html>`
-
   return htmlTemplate
 }

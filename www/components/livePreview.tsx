@@ -13,7 +13,6 @@ const Preview = forwardRef(({ htmlContent }, ref) => {
   const [zoom, setZoom] = useState(DEFAULT_ZOOM)
   const styleTagRef = useRef(null)
 
-  // Initialize style tag once
   useLayoutEffect(() => {
     if (!styleTagRef.current) {
       const styleTag = document.createElement('style')
@@ -22,7 +21,6 @@ const Preview = forwardRef(({ htmlContent }, ref) => {
       styleTagRef.current = styleTag
     }
 
-    // Cleanup on unmount
     return () => {
       if (styleTagRef.current && styleTagRef.current.parentNode) {
         styleTagRef.current.parentNode.removeChild(styleTagRef.current)
@@ -31,15 +29,12 @@ const Preview = forwardRef(({ htmlContent }, ref) => {
     }
   }, [])
 
-  // Update content and styles
   useLayoutEffect(() => {
     if (!ref.current || !htmlContent) return
-
-    // Update HTML content
     ref.current.innerHTML = htmlContent
 
-    // Generate and apply CSS
     const newCSS = render(ref.current)
+
     if (styleTagRef.current) {
       styleTagRef.current.textContent = newCSS
     }
