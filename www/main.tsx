@@ -1,13 +1,13 @@
 import { render, h } from 'preact'
 import 'virtual:tenoxui.css'
-import 'virtual:tenoxui:dev'
 import Router from 'preact-router'
 import { Link } from 'preact-router/match'
 import { App } from './pages/home'
 import { Design } from './pages/design'
+import TenoxUIDevMode from './lib/styler'
 
 render(
-  <div>
+  <TenoxUIDevMode>
     <nav class="fixed [left,bottom]-0 px-2rem py-1.5rem flex gap-1rem shadow-md rounded-tr-1rem bg-blue-200 z-999">
       <Link href="/">Home</Link>
       <Link href="/design">Design</Link>
@@ -16,6 +16,6 @@ render(
       <App path="/" />
       <Design path="/design" />
     </Router>
-  </div>,
+  </TenoxUIDevMode>,
   document.getElementById('app')!
 )

@@ -1,10 +1,10 @@
-import { Ngurai } from '@nguraijs/core'
-import { html } from './src/lib/syntax-highlighter/preset.ts'
+import { TenoxUI } from 'tenoxui'
+import config from './tenoxui.config.js'
 
-const urx = new Ngurai(html)
-const code = "<div class='bg-red'></div>\n"
-console.time('X')
-const tokens = urx.process(code.repeat(200000))
-console.timeEnd('X')
+const code = `<div class="[background]-red size-1000px bg-yellow [&_div]:bg-red [&_div]:size-50 flex items-center justify-center gap-4">
+ <div></div>
+<div></div><div></div>
+</div>`
 
-console.log(urx.process(code))
+const ui = new TenoxUI(config.css)
+console.log(ui.render('bg-linear-to-r'))

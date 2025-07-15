@@ -3,7 +3,7 @@ import { defaultProperties, preflight } from '@tenoxui/preset-tailwind'
 
 export default {
   include: ['index.html', 'www/**/*.{js,jsx,ts,tsx}', 'src/lib/syntax-highlighter/preset.ts'],
-  exclude: ['www/design/template.ts'],
+  exclude: ['www/design/*'],
   css: {
     ...css,
     apply: {
@@ -12,6 +12,9 @@ export default {
       ':root': '[--tw-default-font-sans]-Inter [--tw-default-font-mono]-[JetBrains_Mono]',
       '.ctrl--btn':
         'h-40px flex items-center px-12px rounded-8px bg-neutral-950 text-neutral-50 hover:bg-neutral-800 transition-colors',
+      '.btn--img-prev':
+        'hover:bg-neutral-200 transition-colors duration-300 size-40px flex items-center justify-center',
+      '.btn--img-prev svg': 'size-18px',
       '.btn--live-prev':
         'size-30px flex items-center justify-center rounded-sm border border-neutral-100',
       '.token.keyword': 'font-medium text-emerald-600',

@@ -1,7 +1,6 @@
 import { fontCache } from '../parseFont'
-import { render, cleanHTMLAttributes, config } from '@tenoxui-lib'
-import { TenoxUI } from 'tenoxui'
-import { preflight, defaultProperties } from '@tenoxui/preset-tailwind'
+import { render, ui } from '@tenoxui-lib'
+import { styles } from '@/styles'
 
 export async function generateSVG(
   htmlContent: string,
@@ -23,19 +22,20 @@ export async function generateSVG(
     }
 
     // Process with tenoxui
-    render(temp)
-    cleanHTMLAttributes(temp)
+    // render(temp)
+    // cleanHTMLAttributes(temp)
 
     // Generate SVG
     const svgData = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
   <defs>
-    <style type="text/css">
-      ${fontFaceRules}
-      ${new TenoxUI(config).render(defaultProperties, preflight, {
-        ':root': "[--tw-default-font-sans]-Inter [--tw-default-font-mono]-['JetBrains_Mono']"
-      })}
+    <style>
+      <![CDATA[
+        ${fontFaceRules}
+        ${ui.render(styles)}
+        ${render(temp)}
+      ]]>
     </style>
   </defs>
   <foreignObject width="100%" height="100%">

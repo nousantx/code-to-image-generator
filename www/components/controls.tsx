@@ -1,8 +1,50 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, RefObject } from 'react'
 import { templates } from '@/design/template'
+import {
+  RiExpandHeightLine,
+  RiExpandWidthLine,
+  RiAspectRatioLine,
+  RiRefreshLine,
+  RiDownloadLine,
+  RiFolderDownloadLine,
+  RiFolderUploadLine,
+  RiSaveLine,
+  RiFile3Line
+} from '@remixicon/react'
 
-const useDebounce = (value, delay) => {
-  const [debouncedValue, setDebouncedValue] = useState(value)
+interface Template {
+  template: string
+  width?: number
+  height?: number
+  scale?: number
+}
+
+interface Templates {
+  [key: string]: Template
+}
+
+interface ControlsProps {
+  scale: number
+  setScale: (scale: number) => void
+  width: number
+  setWidth: (width: number) => void
+  height: number
+  setHeight: (height: number) => void
+  outputFormat: string
+  setOutputFormat: (format: string) => void
+  error: string
+  setError: (error: string) => void
+  generateImage: () => void
+  downloadImage: () => void
+  saveDesign: () => void
+  loadDesign: (event: React.ChangeEvent<HTMLInputElement>) => void
+  fileInputRef: RefObject<HTMLInputElement>
+  setHtmlContent: (content: string) => void
+  canvasRef: any
+}
+
+function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -33,29 +75,30 @@ export default function Controls({
   saveDesign,
   loadDesign,
   fileInputRef,
-  setHtmlContent
-}) {
-  const [showTemplates, setShowTemplates] = useState(false)
+  setHtmlContent,
+  canvasRef
+}: ControlsProps) {
+  const [showTemplates, setShowTemplates] = useState<boolean>(false)
 
   // Local state for immediate input values
-  const [localWidth, setLocalWidth] = useState(width)
-  const [localHeight, setLocalHeight] = useState(height)
-  const [localScale, setLocalScale] = useState(scale)
+  const [localWidth, setLocalWidth] = useState<number>(width)
+  const [localHeight, setLocalHeight] = useState<number>(height)
+  const [localScale, setLocalScale] = useState<number>(scale)
 
   // Debounced values
-  const debouncedWidth = useDebounce(localWidth, 300)
-  const debouncedHeight = useDebounce(localHeight, 300)
-  const debouncedScale = useDebounce(localScale, 300)
+  const debouncedWidth = useDebounce<number>(localWidth, 300)
+  const debouncedHeight = useDebounce<number>(localHeight, 300)
+  const debouncedScale = useDebounce<number>(localScale, 300)
 
   // Effect hooks to update parent state when debounced values change
   useEffect(() => {
-    if (debouncedWidth >= 100 && debouncedWidth <= 4000) {
+    if (debouncedWidth >= 100 && debouncedWidth <= 5000) {
       setWidth(debouncedWidth)
     }
   }, [debouncedWidth, setWidth])
 
   useEffect(() => {
-    if (debouncedHeight >= 100 && debouncedHeight <= 4000) {
+    if (debouncedHeight >= 100 && debouncedHeight <= 5000) {
       setHeight(debouncedHeight)
     }
   }, [debouncedHeight, setHeight])
@@ -67,31 +110,31 @@ export default function Controls({
   }, [debouncedScale, setScale])
 
   // Helper functions to safely parse input values
-  const handleWidthChange = (e) => {
+  const handleWidthChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value
     if (value === '') {
       setLocalWidth(100) // Set to minimum value when empty
     } else {
-      const parsed = parseInt(value)
+      const parsed = parseInt(value, 10)
       if (!isNaN(parsed)) {
         setLocalWidth(parsed)
       }
     }
   }
 
-  const handleHeightChange = (e) => {
+  const handleHeightChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value
     if (value === '') {
       setLocalHeight(100) // Set to minimum value when empty
     } else {
-      const parsed = parseInt(value)
+      const parsed = parseInt(value, 10)
       if (!isNaN(parsed)) {
         setLocalHeight(parsed)
       }
     }
   }
 
-  const handleScaleChange = (e) => {
+  const handleScaleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = e.target.value
     if (value === '') {
       setLocalScale(0.1) // Set to minimum value when empty
@@ -103,21 +146,33 @@ export default function Controls({
     }
   }
 
-  const handleTemplateClick = (name) => {
-    const { template, width, height, scale } = templates[name]
+  const handleTemplateClick = (name: string): void => {
+    const templateData = (templates as Templates)[name]
+    if (!templateData) return
+
+    const {
+      template,
+      width: templateWidth,
+      height: templateHeight,
+      scale: templateScale
+    } = templateData
+
     setHtmlContent(template)
-    if (width) {
-      setLocalWidth(width)
-      setWidth(width)
+
+    if (templateWidth) {
+      setLocalWidth(templateWidth)
+      setWidth(templateWidth)
     }
-    if (height) {
-      setLocalHeight(height)
-      setHeight(height)
+
+    if (templateHeight) {
+      setLocalHeight(templateHeight)
+      setHeight(templateHeight)
     }
-    if (scale) {
-      if (scale <= 5) {
-        setLocalScale(scale)
-        setScale(scale)
+
+    if (templateScale) {
+      if (templateScale <= 5) {
+        setLocalScale(templateScale)
+        setScale(templateScale)
       } else {
         setError("Scale can't be bigger than 5!")
         setLocalScale(1)
@@ -127,11 +182,97 @@ export default function Controls({
   }
 
   return (
-    <div>
+    <article className="max-w-1280px mx-auto">
+      <section className="bg-neutral-50 text-neutral-800 border border-neutral-200 rounded-1rem shadow-xl overflow-hidden">
+        <div className="px-6 py-2 min-h-30px flex flex-wrap items-center justify-center font-mono gap-4 [&_svg]:size-18px text-xs font-mono text-neutral-500 bg-neutral-100 border-b border-neutral-200 gap-4">
+          <label className="flex gap-4px items-center h-40px">
+            <RiExpandWidthLine />
+            <input
+              type="number"
+              min="100"
+              max="5000"
+              className="bg-neutral-50 rounded-4px leading-[1] h-26px [minWidth,maxWidth]-6ch items-center justify-center inline-flex ml-8px border border-neutral-300 text-center"
+              value={localWidth}
+              onChange={handleWidthChange}
+              onBlur={() => {
+                if (localWidth < 100) setLocalWidth(100)
+                if (localWidth > 5000) setLocalWidth(5000)
+              }}
+            />
+          </label>
+          <label className="flex gap-4px items-center h-40px">
+            <RiExpandHeightLine />
+            <input
+              type="number"
+              min="100"
+              max="5000"
+              className="bg-neutral-50 py-4px rounded-4px leading-[1] h-26px [minWidth,maxWidth]-6ch items-center justify-center inline-flex ml-8px border border-neutral-300 text-center"
+              value={localHeight}
+              onChange={handleHeightChange}
+              onBlur={() => {
+                if (localHeight < 100) setLocalHeight(100)
+                if (localHeight > 5000) setLocalHeight(5000)
+              }}
+            />
+          </label>
+          <label className="flex gap-4px items-center h-40px">
+            <RiAspectRatioLine />
+            <input
+              type="number"
+              min="0.1"
+              max="5"
+              step="0.1"
+              className="bg-neutral-50 py-4px rounded-4px leading-[1] h-26px w-min [minWidth,maxWidth]-3ch items-center justify-center inline-flex ml-8px border border-neutral-300 text-center"
+              value={localScale}
+              onChange={handleScaleChange}
+              onBlur={() => {
+                if (localScale < 0.1) setLocalScale(0.1)
+                if (localScale > 10) setLocalScale(10)
+              }}
+            />
+          </label>
+          <label className="flex gap-4px items-center h-40px">
+            <RiFile3Line />
+            <select
+              className="bg-neutral-50 px-8px rounded-4px leading-[1] h-26px w-minitems-center justify-center inline-flex ml-8px border border-neutral-300"
+              value={outputFormat}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                setOutputFormat(e.target.value)
+              }
+            >
+              <option value="png">PNG</option>
+              <option value="jpeg">JPEG</option>
+              <option value="webp">WebP</option>
+              <option value="svg">SVG</option>
+              <option value="html">HTML</option>
+            </select>
+          </label>
+        </div>
+        <div className="p-4 bg-neutral-50">
+          <div className="relative overflow-scroll border rounded-1rem p-4 border-neutral-200 bg-emerald-50">
+            <canvas ref={canvasRef} width={width} height={height} className="w-full block" />
+          </div>
+        </div>
+        <div className="text-neutral-500 bg-neutral-100 border-t border-neutral-200 gap-2 flex justify-center items-center px-4">
+          <button onClick={generateImage} className="btn--img-prev" aria-label="Regenerate Image">
+            <RiRefreshLine />
+          </button>
+          <button onClick={downloadImage} className="btn--img-prev" aria-label="Download Image">
+            <RiDownloadLine />
+          </button>
+          <button onClick={saveDesign} className="btn--img-prev" aria-label="Save Design">
+            <RiSaveLine />
+          </button>
+          <button onClick={loadDesign} className="btn--img-prev" aria-label="Load Design">
+            <RiFolderUploadLine />
+          </button>
+        </div>
+      </section>
+
       <div className="mt-3rem rounded-8px">
         <h3 className="mb-1.5rem text-lg font-medium tracking-tight leading-[1]">Try Templates</h3>
         <div className="flex flex-wrap gap-8px">
-          {Object.keys(templates).map((template) => (
+          {Object.keys(templates as Templates).map((template: string) => (
             <button
               key={template}
               onClick={() => handleTemplateClick(template)}
@@ -145,91 +286,9 @@ export default function Controls({
 
       <div className="mt-3rem">
         <h3 className="mb-1.5rem text-lg font-medium tracking-tight leading-[1]">Image Tools</h3>
-        <div className="flex flex-wrap gap-8px">
-          <label>
-            Width:
-            <input
-              type="number"
-              min="100"
-              max="4000"
-              className="bg-neutral-50 py-4px px-8px rounded-4px leading-[1] h-35px w-min center inline-flex ml-8px border border-neutral-300"
-              value={localWidth}
-              onChange={handleWidthChange}
-              onBlur={() => {
-                if (localWidth < 100) setLocalWidth(100)
-                if (localWidth > 4000) setLocalWidth(4000)
-              }}
-            />
-          </label>
-          <label>
-            Height:
-            <input
-              type="number"
-              min="100"
-              max="4000"
-              className="bg-neutral-50 py-4px px-8px rounded-4px leading-[1] h-35px w-min center inline-flex ml-8px border border-neutral-300"
-              value={localHeight}
-              onChange={handleHeightChange}
-              onBlur={() => {
-                if (localHeight < 100) setLocalHeight(100)
-                if (localHeight > 4000) setLocalHeight(4000)
-              }}
-            />
-          </label>
-          <label>
-            Scale:
-            <input
-              type="number"
-              min="0.1"
-              max="5"
-              step="0.1"
-              className="bg-neutral-50 py-4px px-8px rounded-4px leading-[1] h-35px w-min center inline-flex ml-8px border border-neutral-300"
-              value={localScale}
-              onChange={handleScaleChange}
-              onBlur={() => {
-                if (localScale < 0.1) setLocalScale(0.1)
-                if (localScale > 10) setLocalScale(10)
-              }}
-            />
-          </label>
-          <label>
-            Format:
-            <select
-              className="bg-neutral-50 py-4px px-8px rounded-4px leading-[1] h-35px w-min center inline-flex ml-8px border border-neutral-300"
-              value={outputFormat}
-              onChange={(e) => setOutputFormat(e.target.value)}
-            >
-              <option value="png">PNG</option>
-              <option value="jpeg">JPEG</option>
-              <option value="webp">WebP</option>
-              <option value="svg">SVG</option>
-              <option value="html">HTML</option>
-            </select>
-          </label>
-        </div>
+
         {error && <div className="text-red-500">{error}</div>}
       </div>
-      <div className="flex flex-wrap mt-3rem gap-8px">
-        <button onClick={generateImage} className="ctrl--btn">
-          Generate Preview
-        </button>
-        <button onClick={downloadImage} className="ctrl--btn">
-          Download
-        </button>
-        <button onClick={saveDesign} className="ctrl--btn">
-          Save Design
-        </button>
-        <label className="ctrl--btn">
-          Load Design
-          <input
-            className="!hidden"
-            type="file"
-            ref={fileInputRef}
-            accept=".json"
-            onChange={loadDesign}
-          />
-        </label>
-      </div>
-    </div>
+    </article>
   )
 }

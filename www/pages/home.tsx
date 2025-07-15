@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from 'preact/hooks'
 import Preview from '../components/livePreview'
 import Controls from '../components/controls'
-import ImagePreview from '../components/imagePreview'
 import Editor from '../components/editor'
 import { useImageGeneration } from '../hooks/useImageGeneration'
 import { useDesignManagement } from '../hooks/useDesignManagement'
+import { RiSideBarLine, RiCloseLine } from '@remixicon/react'
 
 export function App() {
   const [htmlContent, setHtmlContent] = useState(
@@ -60,22 +60,22 @@ export function App() {
   }, [])
 
   return (
-    <main className="p-8 relative">
+    <main className="p-8 relative max-w-1280px mx-auto">
       <Preview ref={previewRef} htmlContent={htmlContent} />
 
       {/* Toggle Button */}
       <button
         onClick={toggleDownloadSection}
-        className="fixed bottom-4 right-4 z-1000 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition-colors"
+        className="fixed bottom-4 right-4 z-1000 size-35px rounded-6px flex items-center justify-center [&_svg]:size-16px bg-neutral-950 hover:bg-neutral-800 text-neutral-50 transition-colors"
       >
-        {isDownloadSectionActive ? 'Close Panel' : 'Open Panel'}
+        {isDownloadSectionActive ? <RiCloseLine /> : <RiSideBarLine />}
       </button>
 
       <Editor htmlContent={htmlContent} setHtmlContent={setHtmlContent} />
 
       <div
         id="download-section"
-        className={`fixed [top,bottom,right]-0 max-w-screen bg-neutral-100 p-8 z-999 transition-left duration-300ms ${
+        className={`fixed [top,bottom,right]-0 max-w-screen bg-neutral-100 p-8 z-999 transition-left duration-300ms overflow-y-scroll ${
           isDownloadSectionActive ? 'left-0' : 'left--100%'
         }`}
       >
@@ -96,9 +96,8 @@ export function App() {
           loadDesign={loadDesign}
           fileInputRef={fileInputRef}
           setHtmlContent={setHtmlContent}
+          canvasRef={canvasRef}
         />
-
-        <ImagePreview canvasRef={canvasRef} width={width} height={height} />
       </div>
     </main>
   )
