@@ -4,12 +4,12 @@ import { render } from '@tenoxui-lib'
 import { RiZoomInLine, RiZoomOutLine, RiResetLeftLine } from '@remixicon/react'
 
 const STYLE_ID = 'tenoxui-live-preview-style'
-const MIN_ZOOM = 50
-const MAX_ZOOM = 200
+const MIN_ZOOM = 10
+const MAX_ZOOM = 300
 const ZOOM_STEP = 10
 const DEFAULT_ZOOM = 100
 
-const Preview = forwardRef(({ htmlContent }, ref) => {
+const Preview = forwardRef(({ htmlContent }: { htmlContent: string }, ref: any) => {
   const [zoom, setZoom] = useState(DEFAULT_ZOOM)
   const styleTagRef = useRef(null)
 
@@ -55,7 +55,7 @@ const Preview = forwardRef(({ htmlContent }, ref) => {
   const Button = ({ onClick, icon: Icon, label }) => (
     <button
       onClick={onClick}
-      className="hover:bg-neutral-200 transition-colors duration-300 size-30px flex items-center justify-center"
+      className="hover:bg-neutral-500/20 transition-colors duration-300 size-30px flex items-center justify-center"
       aria-label={label}
     >
       <Icon size="16" />
@@ -63,13 +63,13 @@ const Preview = forwardRef(({ htmlContent }, ref) => {
   )
 
   return (
-    <section className="bg-neutral-50 text-neutral-800 border border-neutral-200 rounded-1rem shadow-xl overflow-hidden">
-      <div className="px-2 h-30px flex items-center text-xs font-mono text-neutral-500 bg-neutral-100 border-b border-neutral-200">
+    <section className="bg-neutral-50 text-neutral-800 border border-neutral-200 rounded-1rem shadow-xl overflow-hidden dark:bg-neutral-950 dark:border-neutral-800">
+      <div className="px-2 h-30px flex items-center text-xs font-mono text-neutral-500 bg-neutral-100 border-b border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800">
         Live Preview
       </div>
 
-      <div className="p-4 bg-neutral-50">
-        <div className="relative overflow-scroll border rounded-1rem p-4rem h-400px lg:h-600px border-neutral-200 bg-emerald-50">
+      <div className="p-4 bg-neutral-50 dark:bg-neutral-950">
+        <div className="relative overflow-scroll border rounded-1rem p-4rem h-400px lg:h-600px border-neutral-200 bg-emerald-50 dark:bg-emerald-950 dark:border-neutral-800">
           <div
             id="preview"
             ref={ref}
@@ -79,7 +79,7 @@ const Preview = forwardRef(({ htmlContent }, ref) => {
         </div>
       </div>
 
-      <div className="flex items-center justify-center text-neutral-500 bg-neutral-100 border-t border-neutral-200 gap-8px">
+      <div className="flex items-center justify-center text-neutral-500 bg-neutral-100 border-t border-neutral-200 gap-8px dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-300">
         <Button onClick={handleZoomOut} icon={RiZoomOutLine} label="Zoom out" />
         <Button onClick={handleZoomIn} icon={RiZoomInLine} label="Zoom in" />
         <Button onClick={resetZoom} icon={RiResetLeftLine} label="Reset zoom" />

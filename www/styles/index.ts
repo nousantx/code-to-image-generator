@@ -12,11 +12,11 @@ export const styles = {
   '.btn--img-prev svg': 'size-18px',
   '.btn--live-prev':
     'size-30px flex items-center justify-center rounded-sm border border-neutral-100',
-  '.token.keyword': 'font-medium text-emerald-600',
-  '.token.string': 'text-sky-600 font-medium',
+  '.token.keyword': 'font-medium text-rose-500 dark:text-emerald-500',
+  '.token.string': 'text-sky-600 dark:text-sky-400 font-medium',
   '.token.punctuation': 'text-gray-500',
-  '.token.identifier': 'text-gray-800',
-  '.token.global': 'text-gray-700',
+  '.token.identifier': 'text-gray-800 dark:text-gray-200',
+  '.token.global': 'text-gray-700 dark:text-gray-400',
   '.token.number': 'text-amber-600',
   '.token.comment': 'text-gray-500 italic'
 }

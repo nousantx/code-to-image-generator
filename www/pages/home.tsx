@@ -66,7 +66,7 @@ export function App() {
       {/* Toggle Button */}
       <button
         onClick={toggleDownloadSection}
-        className="fixed bottom-4 right-4 z-1000 size-35px rounded-6px flex items-center justify-center [&_svg]:size-16px bg-neutral-950 hover:bg-neutral-800 text-neutral-50 transition-colors"
+        className="fixed bottom-4 right-4 z-1000 size-35px rounded-6px flex items-center justify-center [&_svg]:size-16px bg-neutral-950 hover:bg-neutral-800 text-neutral-50 transition-colors dark:bg-neutral-50 dark:text-neutral-950"
       >
         {isDownloadSectionActive ? <RiCloseLine /> : <RiSideBarLine />}
       </button>
@@ -75,7 +75,7 @@ export function App() {
 
       <div
         id="download-section"
-        className={`fixed [top,bottom,right]-0 max-w-screen bg-neutral-100 p-8 z-999 transition-left duration-300ms overflow-y-scroll ${
+        className={`fixed [top,bottom,right]-0 max-w-screen bg-neutral-500/20 backdrop-blur-4px p-8 z-999 transition-left duration-300ms overflow-y-scroll ${
           isDownloadSectionActive ? 'left-0' : 'left--100%'
         }`}
       >

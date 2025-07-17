@@ -142,92 +142,78 @@ export function DeclarativeDesign({
 
   return (
     <>
-      <div
-        ref={designRef}
-        id="design"
-        width={config.width}
-        height={config.height}
-        scale={config.scale}
-        format={config.format}
-        style={{
-          width: `${config.width}px`,
-          height: `${config.height}px`,
-          transform: `scale(${config.scale})`,
-          transformOrigin: 'top left'
-        }}
-      >
+      <div ref={designRef} id="design">
         {children}
       </div>
 
-      <button
-        onClick={toggleDownloadSection}
-        className="fixed bottom-4 right-4 z-1002 size-35px rounded-6px flex items-center justify-center [&_svg]:size-16px bg-neutral-950 hover:bg-neutral-800 text-neutral-50 transition-colors"
-      >
-        {isDownloadSectionActive ? <RiCloseLine /> : <RiSideBarLine />}
-      </button>
+      {showControls && (
+        <>
+          <button
+            onClick={toggleDownloadSection}
+            className="fixed bottom-4 right-4 z-1002 size-35px rounded-6px flex items-center justify-center [&_svg]:size-16px bg-neutral-950 hover:bg-neutral-800 text-neutral-50 transition-colors"
+          >
+            {isDownloadSectionActive ? <RiCloseLine /> : <RiSideBarLine />}
+          </button>
 
-      <div
-        className={`declarative-design-container max-w-500px bg-neutral-100 fixed z-1001 bottom-0 ${
-          isDownloadSectionActive ? 'left-0' : 'left--100%'
-        } ${className}`}
-      >
-        <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg p-4">
-          <h3 className="text-lg font-medium mb-2">Generated Image Preview</h3>
-          <div className="relative overflow-auto border rounded-lg p-4 border-gray-200 bg-emerald-50">
-            <canvas
-              ref={canvasRef}
-              width={config.width}
-              height={config.height}
-              className="w-full block max-w-full max-h-96 object-contain"
-            />
-          </div>
-        </div>
-
-        {showControls && (
-          <div className="mt-4 flex flex-wrap gap-2 items-center justify-center">
-            <button
-              onClick={handleGenerate}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-            >
-              <RiRefreshLine size={16} />
-              Generate
-            </button>
-            <button
-              onClick={downloadImage}
-              className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
-            >
-              <RiDownloadLine size={16} />
-              Download
-            </button>
-            <button
-              onClick={saveDesign}
-              className="flex items-center gap-2 px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
-            >
-              <RiSaveLine size={16} />
-              Save Design
-            </button>
-          </div>
-        )}
-
-        {/* Configuration Display */}
-        {showControls && (
-          <div className="mt-4 text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-              <div>Width: {config.width}px</div>
-              <div>Height: {config.height}px</div>
-              <div>Scale: {config.scale}x</div>
-              <div>Format: {config.format.toUpperCase()}</div>
+          <div
+            className={`declarative-design-container max-w-500px bg-neutral-100 fixed z-1001 bottom-50% ${
+              isDownloadSectionActive ? 'left-0' : 'left--100%'
+            } ${className}`}
+          >
+            <div className="mt-4 bg-gray-50 border border-gray-200 rounded-lg p-4">
+              <h3 className="text-lg font-medium mb-2">Generated Image Preview</h3>
+              <div className="relative overflow-auto border rounded-lg p-4 border-gray-200 bg-emerald-50">
+                <canvas
+                  ref={canvasRef}
+                  width={config.width}
+                  height={config.height}
+                  className="w-full block max-w-full max-h-96 object-contain"
+                />
+              </div>
             </div>
-          </div>
-        )}
 
-        {/* Error Display */}
-        {error && (
-          <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700">
-            {error}
+            <div className="mt-4 flex flex-wrap gap-2 items-center justify-center">
+              <button
+                onClick={handleGenerate}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                <RiRefreshLine size={16} />
+                Generate
+              </button>
+              <button
+                onClick={downloadImage}
+                className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+              >
+                <RiDownloadLine size={16} />
+                Download
+              </button>
+              <button
+                onClick={saveDesign}
+                className="flex items-center gap-2 px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors"
+              >
+                <RiSaveLine size={16} />
+                Save Design
+              </button>
+            </div>
+
+            <div className="mt-4 text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                <div>Width: {config.width}px</div>
+                <div>Height: {config.height}px</div>
+                <div>Scale: {config.scale}x</div>
+                <div>Format: {config.format.toUpperCase()}</div>
+              </div>
+            </div>
+
+            {/* Error Display */}
+            {error && (
+              <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700">
+                {error}
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </>
+      )}
     </>
   )
 }

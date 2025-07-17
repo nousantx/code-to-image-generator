@@ -183,15 +183,15 @@ export default function Controls({
 
   return (
     <article className="max-w-1280px mx-auto">
-      <section className="bg-neutral-50 text-neutral-800 border border-neutral-200 rounded-1rem shadow-xl overflow-hidden">
-        <div className="px-6 py-2 min-h-30px flex flex-wrap items-center justify-center font-mono gap-4 [&_svg]:size-18px text-xs font-mono text-neutral-500 bg-neutral-100 border-b border-neutral-200 gap-4">
+      <section className="bg-neutral-50 text-neutral-800 border border-neutral-200 rounded-1rem shadow-xl overflow-hidden dark:bg-neutral-950 dark:text-neutral-200 dark:border-neutral-800">
+        <div className="px-6 py-2 min-h-30px flex flex-wrap items-center justify-center font-mono gap-4 [&_svg]:size-18px text-xs font-mono text-neutral-500 bg-neutral-100 border-b border-neutral-200 gap-4 dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-300">
           <label className="flex gap-4px items-center h-40px">
             <RiExpandWidthLine />
             <input
               type="number"
               min="100"
               max="5000"
-              className="bg-neutral-50 rounded-4px leading-[1] h-26px [minWidth,maxWidth]-6ch items-center justify-center inline-flex ml-8px border border-neutral-300 text-center"
+              className="bg-neutral-50 rounded-4px leading-[1] h-26px [minWidth,maxWidth]-6ch items-center justify-center inline-flex ml-8px border border-neutral-300 text-center dark:bg-neutral-950 dark:border-neutral-700"
               value={localWidth}
               onChange={handleWidthChange}
               onBlur={() => {
@@ -206,7 +206,7 @@ export default function Controls({
               type="number"
               min="100"
               max="5000"
-              className="bg-neutral-50 py-4px rounded-4px leading-[1] h-26px [minWidth,maxWidth]-6ch items-center justify-center inline-flex ml-8px border border-neutral-300 text-center"
+              className="bg-neutral-50 py-4px rounded-4px leading-[1] h-26px [minWidth,maxWidth]-6ch items-center justify-center inline-flex ml-8px border border-neutral-300 text-center dark:bg-neutral-950 dark:border-neutral-700"
               value={localHeight}
               onChange={handleHeightChange}
               onBlur={() => {
@@ -222,7 +222,7 @@ export default function Controls({
               min="0.1"
               max="5"
               step="0.1"
-              className="bg-neutral-50 py-4px rounded-4px leading-[1] h-26px w-min [minWidth,maxWidth]-3ch items-center justify-center inline-flex ml-8px border border-neutral-300 text-center"
+              className="bg-neutral-50 py-4px rounded-4px leading-[1] h-26px w-min [minWidth,maxWidth]-3ch items-center justify-center inline-flex ml-8px border border-neutral-300 text-center dark:bg-neutral-950 dark:border-neutral-700"
               value={localScale}
               onChange={handleScaleChange}
               onBlur={() => {
@@ -234,7 +234,7 @@ export default function Controls({
           <label className="flex gap-4px items-center h-40px">
             <RiFile3Line />
             <select
-              className="bg-neutral-50 px-8px rounded-4px leading-[1] h-26px w-minitems-center justify-center inline-flex ml-8px border border-neutral-300"
+              className="bg-neutral-50 px-8px rounded-4px leading-[1] h-26px w-minitems-center justify-center inline-flex ml-8px border border-neutral-300 dark:bg-neutral-950 dark:border-neutral-700"
               value={outputFormat}
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                 setOutputFormat(e.target.value)
@@ -248,12 +248,12 @@ export default function Controls({
             </select>
           </label>
         </div>
-        <div className="p-4 bg-neutral-50">
-          <div className="relative overflow-scroll border rounded-1rem p-4 border-neutral-200 bg-emerald-50">
+        <div className="p-4 bg-neutral-50 dark:bg-neutral-950">
+          <div className="relative overflow-scroll border rounded-1rem p-4 border-neutral-200 bg-emerald-50 dark:bg-emerald-950 dark:border-neutral-700">
             <canvas ref={canvasRef} width={width} height={height} className="w-full block" />
           </div>
         </div>
-        <div className="text-neutral-500 bg-neutral-100 border-t border-neutral-200 gap-2 flex justify-center items-center px-4">
+        <div className="text-neutral-500 dark:text-neutral-300 bg-neutral-100 border-t border-neutral-200 gap-2 flex justify-center items-center px-4 dark:bg-neutral-900 dark:border-neutral-800">
           <button onClick={generateImage} className="btn--img-prev" aria-label="Regenerate Image">
             <RiRefreshLine />
           </button>

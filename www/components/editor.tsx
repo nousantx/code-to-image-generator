@@ -78,11 +78,11 @@ export default function HtmlEditor({ htmlContent, setHtmlContent }: HtmlEditorPr
   }, [updateCursorPosition])
 
   return (
-    <section class="mt-3rem bg-neutral-50 text-neutral-400 rounded-1rem family-code shadow-xl border border-neutral-200 relative overflow-hidden">
+    <section class="mt-3rem bg-neutral-50 text-neutral-500 rounded-1rem family-code shadow-xl border border-neutral-200 relative overflow-hidden dark:bg-neutral-950 dark:border-neutral-800">
       <div className="relative min-h-300px h-[calc(100%_-_30px)]">
         <div
           ref={lineNumbersRef}
-          className="absolute left-0 top-30px z-30 w-12 bg-neutral-100 text-neutral-400 font-mono text-base leading-6 p-2 border-r border-neutral-200 overflow-hidden text-right pr-4 h-full"
+          className="absolute left-0 top-30px z-30 w-12 bg-neutral-100 text-neutral-500 font-mono text-base leading-6 p-2 border-r border-neutral-200 overflow-hidden text-right pr-4 h-full dark:bg-neutral-900 dark:border-neutral-800"
         >
           <pre className="m-0 p-0 whitespace-pre">{getLineNumbers()}</pre>
         </div>
@@ -111,10 +111,10 @@ export default function HtmlEditor({ htmlContent, setHtmlContent }: HtmlEditorPr
         />
       </div>
 
-      <div className="px-2 h-32px flex items-center text-xs text-neutral-500 bg-neutral-100 border-t border-neutral-200 relative z-99">
+      <div className="px-2 h-32px flex items-center text-xs text-neutral-500 bg-neutral-100 border-t border-neutral-200 relative z-99 dark:bg-neutral-900 dark:border-neutral-800">
         Line {cursorPosition.line}, Column {cursorPosition.column}
       </div>
-      <div className="px-2 h-30px flex items-center text-xs font-mono text-neutral-500 bg-neutral-100 border-b border-neutral-200 absolute top-0 left-0 right-0 z-99">
+      <div className="px-2 h-30px flex items-center text-xs font-mono text-neutral-500 bg-neutral-100 border-b border-neutral-200 absolute top-0 left-0 right-0 z-99 dark:bg-neutral-900 dark:border-neutral-800">
         HTML Editor
       </div>
     </section>
