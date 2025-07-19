@@ -32,7 +32,12 @@ export async function generateSVG(
     <html xmlns="http://www.w3.org/1999/xhtml">${temp.innerHTML}</html>
   </foreignObject>
 </svg>`
-    return svgData.replace(/>\s+</g, '><')
+    return svgData
+      .replace(/>\s+</g, '><')
+      .replace(
+        /<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)(\s[^>]*)?(?<!\/)\>/gi,
+        '<$1$2/>'
+      )
   } catch (error) {
     throw new Error(
       `SVG generation failed: ${error instanceof Error ? error.message : 'Unknown error'}`
