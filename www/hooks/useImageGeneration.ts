@@ -8,7 +8,8 @@ export function useImageGeneration(
   height,
   scale,
   outputFormat,
-  setError
+  setError,
+  fileName
 ) {
   const generateImage = useCallback(async () => {
     try {
@@ -41,7 +42,13 @@ export function useImageGeneration(
     try {
       setError('')
       const link = document.createElement('a')
-      link.download = `generated-image.${outputFormat}`
+      link.download =
+        (fileName ||
+          `generated-${new Date()
+            .toISOString()
+            .slice(2, 19)
+            .replace(/[-:]/g, '')
+            .replace('T', '-')}`) + `.${outputFormat}`
 
       if (outputFormat === 'svg') {
         const svgData = await generateSVG(htmlContent, width * scale, height * scale, scale)
@@ -51,7 +58,6 @@ export function useImageGeneration(
         const htmlTemplate = await generateHTML(htmlContent)
         const blob = new Blob([htmlTemplate], { type: 'text/html' })
         link.href = URL.createObjectURL(blob)
-        link.download = 'generated-content.html'
       } else {
         await generateImage()
         link.href = canvasRef.current.toDataURL(`image/${outputFormat}`)

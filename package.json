@@ -1,5 +1,5 @@
 {
-  "name": "@nousantx/code-to-image",
+  "name": "@nousantx/imagetools",
   "author": "NOuSantx <nousantx@gmail.com>",
   "private": true,
   "version": "1.0.0",
@@ -20,6 +20,7 @@
     "@tenoxui/moxie": "^0.7.1",
     "@tenoxui/preset-tailwind": "^1.0.2",
     "@types/node": "^22.10.2",
+    "nguraijs": "^0.6.1",
     "preact-router": "^4.1.2",
     "tenoxui": "^1.0.0",
     "typescript": "^5.7.2",
