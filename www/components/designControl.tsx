@@ -21,6 +21,7 @@ interface DeclarativeDesignProps {
   height?: number
   scale?: number
   format?: string
+  fileName?: string
   autoGenerate?: boolean
   showControls?: boolean
   className?: string
@@ -34,7 +35,8 @@ export function DeclarativeDesign({
   format = 'png',
   autoGenerate = true,
   showControls = true,
-  className = ''
+  className = '',
+  fileName = ''
 }: DeclarativeDesignProps) {
   const [htmlContent, setHtmlContent] = useState('')
   const [error, setError] = useState('')
@@ -57,7 +59,8 @@ export function DeclarativeDesign({
     config.height,
     config.scale,
     config.format,
-    setError
+    setError,
+    fileName
   )
 
   const toggleDownloadSection = useCallback(() => {
@@ -121,7 +124,7 @@ export function DeclarativeDesign({
 
   const saveDesign = useCallback(() => {
     const designData = {
-      htmlContent,
+      html: htmlContent,
       ...config,
       timestamp: new Date().toISOString()
     }
@@ -133,7 +136,9 @@ export function DeclarativeDesign({
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `design-${Date.now()}.json`
+    a.download =
+      fileName ||
+      `untitled-${new Date().toISOString().slice(2, 19).replace(/[-:]/g, '').replace('T', '-')}`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

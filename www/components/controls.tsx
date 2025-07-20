@@ -146,41 +146,6 @@ export default function Controls({
     }
   }
 
-  const handleTemplateClick = (name: string): void => {
-    const templateData = (templates as Templates)[name]
-    if (!templateData) return
-
-    const {
-      template,
-      width: templateWidth,
-      height: templateHeight,
-      scale: templateScale
-    } = templateData
-
-    setHtmlContent(template)
-
-    if (templateWidth) {
-      setLocalWidth(templateWidth)
-      setWidth(templateWidth)
-    }
-
-    if (templateHeight) {
-      setLocalHeight(templateHeight)
-      setHeight(templateHeight)
-    }
-
-    if (templateScale) {
-      if (templateScale <= 5) {
-        setLocalScale(templateScale)
-        setScale(templateScale)
-      } else {
-        setError("Scale can't be bigger than 5!")
-        setLocalScale(1)
-        setScale(1)
-      }
-    }
-  }
-
   return (
     <article className="max-w-1280px mx-auto">
       <section className="bg-neutral-50 text-neutral-800 border border-neutral-200 rounded-1rem shadow-xl overflow-hidden dark:bg-neutral-950 dark:text-neutral-200 dark:border-neutral-800">
@@ -263,32 +228,20 @@ export default function Controls({
           <button onClick={saveDesign} className="btn--img-prev" aria-label="Save Design">
             <RiSaveLine />
           </button>
-          <button onClick={loadDesign} className="btn--img-prev" aria-label="Load Design">
+          <label className="btn--img-prev">
             <RiFolderUploadLine />
-          </button>
+            <input
+              className="!hidden"
+              type="file"
+              ref={fileInputRef}
+              accept=".json"
+              onChange={loadDesign}
+            />
+          </label>
         </div>
       </section>
 
-      <div className="mt-3rem rounded-8px">
-        <h3 className="mb-1.5rem text-lg font-medium tracking-tight leading-[1]">Try Templates</h3>
-        <div className="flex flex-wrap gap-8px">
-          {Object.keys(templates as Templates).map((template: string) => (
-            <button
-              key={template}
-              onClick={() => handleTemplateClick(template)}
-              className="ctrl--btn"
-            >
-              {template.charAt(0).toUpperCase() + template.slice(1)}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="mt-3rem">
-        <h3 className="mb-1.5rem text-lg font-medium tracking-tight leading-[1]">Image Tools</h3>
-
-        {error && <div className="text-red-500">{error}</div>}
-      </div>
+      {error && <div className="text-red-500">{error}</div>}
     </article>
   )
 }
