@@ -20,25 +20,29 @@ export function Design() {
     height = 1000,
     scale = 1,
     format = 'jpg',
-    fileName = `untitled-${new Date()
+    name = `untitled-${new Date()
       .toISOString()
       .slice(2, 19)
       .replace(/[-:]/g, '')
       .replace('T', '-')}`,
-    control = true
+    control = true,
+    full = false
   } = config
 
   if (!control) return <Content />
 
+  const clamp = (scale, max, min) => (scale > max ? min : scale)
+
   return (
     <DeclarativeDesign
-      width={width}
-      height={height}
-      scale={scale}
+      width={clamp(width, 5000, 1000)}
+      height={clamp(height, 5000, 1000)}
+      scale={clamp(scale, 5, 1)}
       format={format}
       autoGenerate={true}
       showControls={true}
-      fileName={fileName}
+      fileName={name}
+      full={full}
     >
       <Content />
     </DeclarativeDesign>

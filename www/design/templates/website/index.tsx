@@ -6,10 +6,10 @@ const height = 1140
 export const config = {
   width,
   height,
-  scale: 2,
+  scale: 1,
   format: 'html',
-  control: true,
-  fileName: 'website-design-template'
+  control: false,
+  name: 'website-design-template'
 }
 
 function Design() {

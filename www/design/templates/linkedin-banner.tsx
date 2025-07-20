@@ -10,7 +10,9 @@ export const config = {
   height,
   scale: 1,
   format: 'jpg',
-  control: false
+  control: true,
+  full: false,
+  name: 'LinkedIn Banner'
 }
 
 export const Content = () => {
