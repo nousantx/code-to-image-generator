@@ -15,7 +15,18 @@ export function Design() {
     )
   }
 
-  const { width = 1000, height = 1000, scale = 1, format = 'jpg', control = true } = config
+  const {
+    width = 1000,
+    height = 1000,
+    scale = 1,
+    format = 'jpg',
+    fileName = `untitled-${new Date()
+      .toISOString()
+      .slice(2, 19)
+      .replace(/[-:]/g, '')
+      .replace('T', '-')}`,
+    control = true
+  } = config
 
   if (!control) return <Content />
 
@@ -27,6 +38,7 @@ export function Design() {
       format={format}
       autoGenerate={true}
       showControls={true}
+      fileName={fileName}
     >
       <Content />
     </DeclarativeDesign>
