@@ -6,7 +6,7 @@ import { App } from './pages/home'
 import { Design } from './pages/design'
 import { useTheme } from './hooks/useTheme'
 import { RiMoonClearLine, RiSunLine } from '@remixicon/react'
-import TenoxUIDevMode from './lib/styler'
+import TenoxUIDevMode from './styles/styler'
 
 function Root() {
   const { toggleTheme, isDark } = useTheme()

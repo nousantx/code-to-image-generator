@@ -12,6 +12,7 @@ export const styles = {
   '.btn--img-prev svg': 'size-18px',
   '.btn--live-prev':
     'size-30px flex items-center justify-center rounded-sm border border-neutral-100',
+  // syntax highlighter styles
   '.token.keyword': 'font-medium text-rose-500 dark:text-emerald-500',
   '.token.string': 'text-sky-600 dark:text-sky-400 font-medium',
   '.token.punctuation': 'text-gray-500',
