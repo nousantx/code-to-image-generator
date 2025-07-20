@@ -143,7 +143,7 @@ export default function BrowserUI({
                 />
               </svg>
 
-              <span>
+              <span className="leading-[1]">
                 <span className="text-slate-400">{protocol}://</span>
                 <span className="font-medium">{link}</span>
               </span>

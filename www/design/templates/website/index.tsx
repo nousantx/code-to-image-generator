@@ -3,7 +3,14 @@ import BrowserUi from './components/browser-ui'
 
 const width = 1556
 const height = 1140
-export const config = { width, height, scale: 2, format: 'jpg', control: false }
+export const config = {
+  width,
+  height,
+  scale: 2,
+  format: 'html',
+  control: true,
+  fileName: 'website-design-template'
+}
 
 function Design() {
   return (
@@ -15,12 +22,13 @@ function Design() {
 
 export function Content() {
   const { isDark } = useTheme()
+
   return (
     <div
       data-theme={isDark ? 'dark' : 'light'}
       className={`w-${width}px h-${height}px bg-linear-125deg from-rose-400 to-fuchsia-500 relative`}
     >
-      <BrowserUi title="TenoxUI" link="localhost:3000/design/tenoxui">
+      <BrowserUi title="TenoxUI" link="localhost:5000/design/tenoxui" protocol="ssh">
         <Design />
       </BrowserUi>
     </div>
