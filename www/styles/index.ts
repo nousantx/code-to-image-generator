@@ -8,7 +8,7 @@ export const styles = {
   '.ctrl--btn':
     'h-40px flex items-center px-12px rounded-8px bg-neutral-950 text-neutral-50 hover:bg-neutral-800 transition-colors',
   '.btn--img-prev':
-    'hover:bg-neutral-200 transition-colors duration-300 size-40px flex items-center justify-center',
+    'hover:bg-neutral-500/20 transition-colors duration-300 size-40px flex items-center justify-center',
   '.btn--img-prev svg': 'size-18px',
   '.btn--live-prev':
     'size-30px flex items-center justify-center rounded-sm border border-neutral-100',
