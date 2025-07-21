@@ -10,9 +10,9 @@ export default function HtmlEditor({ htmlContent, setHtmlContent }: HtmlEditorPr
   const [cursorPosition, setCursorPosition] = useState({ line: 1, column: 1 })
   const [highlightedCode, setHighlightedCode] = useState('')
 
-  const textareaRef = useRef(null)
-  const highlightRef = useRef(null)
-  const lineNumbersRef = useRef(null)
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null)
+  const highlightRef = useRef<HTMLPreElement | null>(null)
+  const lineNumbersRef = useRef<HTMLDivElement | null>(null)
 
   const updateHighlighting = useCallback(() => {
     try {
@@ -31,39 +31,38 @@ export default function HtmlEditor({ htmlContent, setHtmlContent }: HtmlEditorPr
 
   const updateCursorPosition = useCallback(() => {
     if (!textareaRef.current) return
-
     const start = textareaRef.current.selectionStart
     const textBeforeCursor = htmlContent.substring(0, start)
     const lines = textBeforeCursor.split('\n')
     const line = lines.length
     const column = lines[lines.length - 1].length + 1
-
     setCursorPosition({ line, column })
   }, [htmlContent])
 
   const handleScroll = useCallback(() => {
     if (!textareaRef.current || !highlightRef.current || !lineNumbersRef.current) return
-
     const scrollTop = textareaRef.current.scrollTop
     const scrollLeft = textareaRef.current.scrollLeft
-
     highlightRef.current.scrollTop = scrollTop
     highlightRef.current.scrollLeft = scrollLeft
     lineNumbersRef.current.scrollTop = scrollTop
   }, [])
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Tab') {
       e.preventDefault()
-      const start = e.target.selectionStart
-      const end = e.target.selectionEnd
+      const target = e.target as HTMLTextAreaElement
+      if (!target) return
+
+      const start = target.selectionStart
+      const end = target.selectionEnd
       const spaces = '  '
 
       const newCode = htmlContent.substring(0, start) + spaces + htmlContent.substring(end)
       setHtmlContent(newCode)
 
       setTimeout(() => {
-        e.target.selectionStart = e.target.selectionEnd = start + spaces.length
+        target.selectionStart = target.selectionEnd = start + spaces.length
         updateCursorPosition()
       }, 0)
     }
@@ -97,7 +96,7 @@ export default function HtmlEditor({ htmlContent, setHtmlContent }: HtmlEditorPr
           ref={textareaRef}
           className="absolute inset-0 top-30px z-29 m-0 p-2 pl-14 font-mono text-base leading-6 bg-transparent border-0 outline-0 resize-none overflow-auto whitespace-pre caret-black text-transparent [tabSize]-2"
           value={htmlContent}
-          onChange={(e) => setHtmlContent(e.target.value)}
+          onChange={(e) => setHtmlContent((e.target as HTMLTextAreaElement).value)}
           onScroll={handleScroll}
           onKeyDown={handleKeyDown}
           onSelect={updateCursorPosition}

@@ -1,18 +1,18 @@
 import { useCallback } from 'preact/hooks'
 
 export function useDesignManagement(
-  htmlContent,
-  width,
-  height,
-  scale,
-  outputFormat,
-  setHtmlContent,
-  setWidth,
-  setHeight,
-  setScale,
-  setOutputFormat,
-  setError,
-  generateImage
+  htmlContent: string,
+  width: number,
+  height: number,
+  scale: number,
+  outputFormat: string,
+  setHtmlContent: (html: string) => void,
+  setWidth: (width: number) => void,
+  setHeight: (height: number) => void,
+  setScale: (scale: number) => void,
+  setOutputFormat: (output: string) => void,
+  setError: (error: string) => void,
+  generateImage: any
 ) {
   const saveDesign = useCallback(() => {
     try {
@@ -31,17 +31,21 @@ export function useDesignManagement(
       link.click()
       URL.revokeObjectURL(link.href)
     } catch (error) {
-      setError(`Failed to save design: ${error.message}`)
+      if (error instanceof Error) {
+        setError(`Failed to save design: ${error.message}`)
+      } else {
+        setError('Failed to save design: Unknown error')
+      }
     }
   }, [htmlContent, width, height, scale, outputFormat, setError])
 
   const loadDesign = useCallback(
-    (event) => {
+    (event: any) => {
       const file = event.target.files[0]
       if (!file) return
 
       const reader = new FileReader()
-      reader.onload = (e) => {
+      reader.onload = (e: any) => {
         try {
           const designData = JSON.parse(e.target.result)
           setHtmlContent(designData.html)
@@ -55,7 +59,11 @@ export function useDesignManagement(
             generateImage()
           }, 100)
         } catch (error) {
-          setError(`Failed to load design file: ${error.message}`)
+          if (error instanceof Error) {
+            setError(`Failed to load design: ${error.message}`)
+          } else {
+            setError('Failed to load design: Unknown error')
+          }
         }
       }
       reader.readAsText(file)

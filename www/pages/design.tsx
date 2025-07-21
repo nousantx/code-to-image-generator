@@ -1,6 +1,5 @@
 import { DeclarativeDesign } from '../components/designControl'
 import { Content, config } from '@/design'
-
 const isDev = import.meta.env.DEV
 
 export function Design() {
@@ -31,7 +30,7 @@ export function Design() {
 
   if (!control) return <Content />
 
-  const clamp = (scale, max, min) => (scale > max ? min : scale)
+  const clamp = (scale: number, max: number, min: number): number => (scale > max ? min : scale)
 
   return (
     <DeclarativeDesign

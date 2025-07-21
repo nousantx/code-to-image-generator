@@ -1,9 +1,11 @@
 import { useLayoutEffect, useRef } from 'preact/hooks'
+import { ComponentChildren } from 'preact'
 import { styles as defaultStyles } from '@/styles'
 import { ui, render } from '@tenoxui-lib'
+
 const isDev = import.meta.env.DEV
 
-export function styler({ children }) {
+export function styler({ children }: { children: ComponentChildren }) {
   if (!isDev) return <>{children}</>
   const STYLE_ID = 'tenoxui-main-style'
   const styleTagRef = useRef<HTMLStyleElement | null>(null)

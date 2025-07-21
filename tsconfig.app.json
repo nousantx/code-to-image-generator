@@ -32,5 +32,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "www"]
+  "include": ["src", "www"],
+  "exclude": ["www/design/templates"]
 }

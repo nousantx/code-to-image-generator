@@ -22,9 +22,9 @@ export function App() {
   const [height, setHeight] = useState(1000)
   const [isDownloadSectionActive, setIsDownloadSectionActive] = useState(false)
 
-  const canvasRef = useRef(null)
-  const previewRef = useRef(null)
-  const fileInputRef = useRef(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const previewRef = useRef<HTMLDivElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const { generateImage, downloadImage } = useImageGeneration(
     canvasRef,
@@ -89,13 +89,11 @@ export function App() {
           outputFormat={outputFormat}
           setOutputFormat={setOutputFormat}
           error={error}
-          setError={setError}
           generateImage={generateImage}
           downloadImage={downloadImage}
           saveDesign={saveDesign}
           loadDesign={loadDesign}
           fileInputRef={fileInputRef}
-          setHtmlContent={setHtmlContent}
           canvasRef={canvasRef}
         />
       </div>

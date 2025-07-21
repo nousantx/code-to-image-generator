@@ -11,7 +11,7 @@ const DEFAULT_ZOOM = 100
 
 const Preview = forwardRef(({ htmlContent }: { htmlContent: string }, ref: any) => {
   const [zoom, setZoom] = useState(DEFAULT_ZOOM)
-  const styleTagRef = useRef(null)
+  const styleTagRef: any = useRef(null)
 
   useLayoutEffect(() => {
     if (!styleTagRef.current) {
@@ -52,7 +52,15 @@ const Preview = forwardRef(({ htmlContent }: { htmlContent: string }, ref: any) 
     setZoom(DEFAULT_ZOOM)
   }
 
-  const Button = ({ onClick, icon: Icon, label }) => (
+  const Button = ({
+    onClick,
+    icon: Icon,
+    label
+  }: {
+    onClick: () => void
+    icon: any
+    label: string
+  }) => (
     <button
       onClick={onClick}
       className="hover:bg-neutral-500/20 transition-colors duration-300 size-30px flex items-center justify-center"

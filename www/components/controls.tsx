@@ -1,27 +1,15 @@
-import { useState, useEffect, RefObject } from 'react'
-import { templates } from '@/design/template'
+import { useState, useEffect } from 'preact/hooks'
+import { RefObject } from 'preact'
 import {
   RiExpandHeightLine,
   RiExpandWidthLine,
   RiAspectRatioLine,
   RiRefreshLine,
   RiDownloadLine,
-  RiFolderDownloadLine,
   RiFolderUploadLine,
   RiSaveLine,
   RiFile3Line
 } from '@remixicon/react'
-
-interface Template {
-  template: string
-  width?: number
-  height?: number
-  scale?: number
-}
-
-interface Templates {
-  [key: string]: Template
-}
 
 interface ControlsProps {
   scale: number
@@ -33,13 +21,11 @@ interface ControlsProps {
   outputFormat: string
   setOutputFormat: (format: string) => void
   error: string
-  setError: (error: string) => void
   generateImage: () => void
   downloadImage: () => void
   saveDesign: () => void
   loadDesign: (event: React.ChangeEvent<HTMLInputElement>) => void
   fileInputRef: RefObject<HTMLInputElement>
-  setHtmlContent: (content: string) => void
   canvasRef: any
 }
 
@@ -69,28 +55,21 @@ export default function Controls({
   outputFormat,
   setOutputFormat,
   error,
-  setError,
   generateImage,
   downloadImage,
   saveDesign,
   loadDesign,
   fileInputRef,
-  setHtmlContent,
   canvasRef
 }: ControlsProps) {
-  const [showTemplates, setShowTemplates] = useState<boolean>(false)
-
-  // Local state for immediate input values
   const [localWidth, setLocalWidth] = useState<number>(width)
   const [localHeight, setLocalHeight] = useState<number>(height)
   const [localScale, setLocalScale] = useState<number>(scale)
 
-  // Debounced values
   const debouncedWidth = useDebounce<number>(localWidth, 300)
   const debouncedHeight = useDebounce<number>(localHeight, 300)
   const debouncedScale = useDebounce<number>(localScale, 300)
 
-  // Effect hooks to update parent state when debounced values change
   useEffect(() => {
     if (debouncedWidth >= 100 && debouncedWidth <= 5000) {
       setWidth(debouncedWidth)
@@ -109,11 +88,12 @@ export default function Controls({
     }
   }, [debouncedScale, setScale])
 
-  // Helper functions to safely parse input values
   const handleWidthChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const value = e.target.value
+    const target = e.target as HTMLInputElement
+    const value = target.value
+
     if (value === '') {
-      setLocalWidth(100) // Set to minimum value when empty
+      setLocalWidth(100)
     } else {
       const parsed = parseInt(value, 10)
       if (!isNaN(parsed)) {
@@ -123,9 +103,11 @@ export default function Controls({
   }
 
   const handleHeightChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const value = e.target.value
+    const target = e.target as HTMLInputElement
+    const value = target.value
+
     if (value === '') {
-      setLocalHeight(100) // Set to minimum value when empty
+      setLocalHeight(100)
     } else {
       const parsed = parseInt(value, 10)
       if (!isNaN(parsed)) {
@@ -135,9 +117,11 @@ export default function Controls({
   }
 
   const handleScaleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const value = e.target.value
+    const target = e.target as HTMLInputElement
+    const value = target.value
+
     if (value === '') {
-      setLocalScale(0.1) // Set to minimum value when empty
+      setLocalScale(0.1)
     } else {
       const parsed = parseFloat(value)
       if (!isNaN(parsed)) {
@@ -202,7 +186,7 @@ export default function Controls({
               className="bg-neutral-50 px-8px rounded-4px leading-[1] h-26px w-minitems-center justify-center inline-flex ml-8px border border-neutral-300 dark:bg-neutral-950 dark:border-neutral-700"
               value={outputFormat}
               onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                setOutputFormat(e.target.value)
+                setOutputFormat((e.target as HTMLSelectElement).value)
               }
             >
               <option value="png">PNG</option>

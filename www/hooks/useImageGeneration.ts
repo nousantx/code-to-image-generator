@@ -1,20 +1,26 @@
 import { useCallback } from 'preact/hooks'
+import { RefObject } from 'preact'
 import { generateHTML, generateSVG } from '@app/src/utils/generator'
 
 export function useImageGeneration(
-  canvasRef,
-  htmlContent,
-  width,
-  height,
-  scale,
-  outputFormat,
-  setError,
-  fileName
+  canvasRef: RefObject<HTMLCanvasElement>,
+  htmlContent: string,
+  width: number,
+  height: number,
+  scale: number,
+  outputFormat: string,
+  setError: (error: string) => void,
+  fileName?: string
 ) {
   const generateImage = useCallback(async () => {
     try {
       setError('')
+      if (!canvasRef.current) {
+        throw new Error('Canvas reference is not available')
+      }
+
       const ctx = canvasRef.current.getContext('2d')
+      if (!ctx) return null
       const scaledWidth = width * scale
       const scaledHeight = height * scale
 
@@ -34,7 +40,8 @@ export function useImageGeneration(
 
       ctx.drawImage(img, 0, 0)
     } catch (error) {
-      setError(`Failed to generate image: ${error.message}`)
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred'
+      setError(`Failed to generate image: ${errorMessage}`)
     }
   }, [canvasRef, htmlContent, width, height, scale, setError])
 
@@ -59,6 +66,9 @@ export function useImageGeneration(
         const blob = new Blob([htmlTemplate], { type: 'text/html' })
         link.href = URL.createObjectURL(blob)
       } else {
+        if (!canvasRef.current) {
+          throw new Error('Canvas reference is not available')
+        }
         await generateImage()
         link.href = canvasRef.current.toDataURL(`image/${outputFormat}`)
       }
@@ -69,9 +79,20 @@ export function useImageGeneration(
         URL.revokeObjectURL(link.href)
       }
     } catch (error) {
-      setError(`Failed to download image: ${error.message}`)
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred'
+      setError(`Failed to download image: ${errorMessage}`)
     }
-  }, [canvasRef, htmlContent, width, height, scale, outputFormat, generateImage, setError])
+  }, [
+    canvasRef,
+    htmlContent,
+    width,
+    height,
+    scale,
+    outputFormat,
+    generateImage,
+    setError,
+    fileName
+  ])
 
   return { generateImage, downloadImage }
 }

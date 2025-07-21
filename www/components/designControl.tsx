@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'preact/hooks'
 import { useImageGeneration } from '../hooks/useImageGeneration'
 import {
   RiRefreshLine,
@@ -21,7 +21,6 @@ interface DeclarativeDesignProps {
   height?: number
   scale?: number
   format?: string
-  fileName?: string
   autoGenerate?: boolean
   showControls?: boolean
   className?: string
