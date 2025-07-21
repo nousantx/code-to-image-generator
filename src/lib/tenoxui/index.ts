@@ -1,15 +1,11 @@
 import { TenoxUI } from 'tenoxui'
 import config from './config'
 
-interface StyleRules {
-  [selector: string]: string
-}
-
 const ui = new TenoxUI(config)
 
 function render(node: Document | Element): string {
   const elements = node.querySelectorAll('*')
-  const classNames = []
+  const classNames: string[] = []
   elements.forEach((element: Element) => {
     if (element.classList && element.classList.length > 0) {
       Array.from(element.classList).forEach((className: string) => {
