@@ -1,0 +1,17 @@
+/**
+ * Adding custom font example.
+ *
+ * Just make sure you include this file or any css file that contains -
+ * font rule definition with valid font files.
+ *
+ * Or you can just grab the fonts from Google Fonts..
+ *
+ */
+
+@font-face {
+  font-family: 'My Custom Font';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./font.woff2) format('woff2');
+}

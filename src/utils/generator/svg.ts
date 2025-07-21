@@ -1,6 +1,6 @@
-import { fontCache } from '../parseFont'
 import { render, ui } from '@tenoxui-lib'
 import { styles } from '@/styles'
+import { FontFace } from '../parseFont'
 
 export async function generateSVG(
   htmlContent: string,
@@ -9,7 +9,6 @@ export async function generateSVG(
   scale: number = 1
 ): Promise<string> {
   try {
-    const fontFaceRules = await fontCache.getGoogleFontsStyles()
     const temp = document.createElement('div')
     temp.innerHTML = htmlContent
     const contentDiv = temp.firstElementChild as HTMLElement
@@ -22,7 +21,11 @@ export async function generateSVG(
   <defs>
     <style>
       <![CDATA[
-        ${fontFaceRules}
+        ${(await new FontFace('google-fonts').load()).replaceAll('\\n', '\n')}
+        ${
+          /* custom font here */
+          (await new FontFace('custom-fonts').load()).replaceAll('\\n', '\n')
+        }
         ${ui.render(styles)}
         ${render(temp)}
       ]]>

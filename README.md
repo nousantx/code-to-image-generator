@@ -14,7 +14,8 @@ A simple and lightweight code-to-image generator, style with a utility-first cla
 - **Lightweight** - Built with preactjs for main canvas, and TenoxUI for the styles.
 - **Interactive Editor** - A realtime live preview, with in-browser editor with realtime syntax-highlighter.
 - **Utility-First Based** - Fast styling solution using atomic CSS approach.
-- **Component Based** - It trace your dom, not your code!
+- **Faster with JSX** - Write faster with component-based support! (dev mode only!)
+- **Custom Font** - It's easy to add fonts to the design!
 - **Support All CSS Properties** - Use any CSS baseline properties that _widely available_ to create modern and faster styling.
 
 ## License

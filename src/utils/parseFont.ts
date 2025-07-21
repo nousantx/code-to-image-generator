@@ -3,32 +3,32 @@ interface CacheData {
   timestamp: number
 }
 
-class FontCache {
-  private cache = new Map<string, string>()
+export class FontFace {
+  private fontId: string
+  private storageKey: string
   private pendingRequests = new Map<string, Promise<string>>()
-  private readonly storageKey = 'google-fonts-cache'
+  private cache = new Map<string, string>()
 
-  constructor() {
+  constructor(fontId: string) {
+    this.fontId = fontId
+    this.storageKey = `${fontId}-cache`
     this.loadFromStorage()
   }
 
-  async getGoogleFontsStyles(): Promise<string> {
-    const googleFontsLink = document.getElementById('google-fonts') as HTMLLinkElement
-    if (!googleFontsLink) return ''
+  async load(): Promise<string> {
+    const fontSrc = document.getElementById(this.fontId) as HTMLLinkElement
+    if (!fontSrc) return ''
 
-    const cacheKey = googleFontsLink.href
+    const cacheKey = fontSrc.href
 
-    // Return cached result
     if (this.cache.has(cacheKey)) {
       return this.cache.get(cacheKey)!
     }
 
-    // Return pending request if already in progress
     if (this.pendingRequests.has(cacheKey)) {
       return this.pendingRequests.get(cacheKey)!
     }
 
-    // Create new request
     const fontPromise = this.fetchAndProcessFonts(cacheKey)
     this.pendingRequests.set(cacheKey, fontPromise)
 
@@ -38,21 +38,20 @@ class FontCache {
       this.saveToStorage()
       return result
     } catch (error) {
-      console.error('Failed to process Google Fonts:', error)
+      console.error('Failed to process Fonts:', error)
       return ''
     } finally {
       this.pendingRequests.delete(cacheKey)
     }
   }
 
-  private async fetchAndProcessFonts(googleFontsUrl: string): Promise<string> {
-    const response = await fetch(googleFontsUrl)
+  private async fetchAndProcessFonts(url: string): Promise<string> {
+    const response = await fetch(url)
     const css = await response.text()
 
     const fontFaceRules = css.match(/@font-face\s*{[^}]+}/g)
     if (!fontFaceRules) return ''
 
-    // Process fonts in parallel
     const fontPromises = fontFaceRules.map(async (rule) => {
       const urlMatch = rule.match(/url\(([^)]+)\)/)
       if (!urlMatch) return rule
@@ -73,7 +72,7 @@ class FontCache {
         )
       } catch (error) {
         console.warn('Failed to fetch font:', fontUrl, error)
-        return rule // Return original rule as fallback
+        return rule
       }
     })
 
@@ -95,9 +94,10 @@ class FontCache {
   }
 
   private detectFontFormat(url: string): string {
-    if (url.endsWith('woff2')) return 'woff2'
-    if (url.endsWith('woff')) return 'woff'
-    if (url.endsWith('ttf')) return 'truetype'
+    if (url.endsWith('.woff2')) return 'woff2'
+    if (url.endsWith('.woff')) return 'woff'
+    if (url.endsWith('.ttf')) return 'truetype'
+    if (url.endsWith('.otf')) return 'opentype'
     return 'opentype'
   }
 
@@ -138,5 +138,3 @@ class FontCache {
     }
   }
 }
-
-export const fontCache = new FontCache()
