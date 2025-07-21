@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "preact": "^10.25.3"
+    "preact": "^10.25.3",
+    "preact-iso": "^2.9.2"
   },
   "devDependencies": {
     "@nguraijs/core": "^0.1.0",
@@ -21,7 +22,6 @@
     "@tenoxui/preset-tailwind": "^1.0.2",
     "@types/node": "^22.10.2",
     "nguraijs": "^0.6.1",
-    "preact-router": "^4.1.2",
     "tenoxui": "^1.0.0",
     "typescript": "^5.7.2",
     "vite": "^6.0.5",
