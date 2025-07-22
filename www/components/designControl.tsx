@@ -8,6 +8,17 @@ import {
   RiCloseLine
 } from '@remixicon/react'
 
+export type DesignOptions = {
+  width: number
+  height: number
+  name?: string
+  scale?: number
+  format?: 'jpg' | 'jpeg' | 'png' | 'webp' | 'svg' | 'html'
+  control?: boolean
+  full?: boolean
+  styles?: Record<string, string>
+}
+
 interface DesignConfig {
   width: number
   height: number
@@ -26,6 +37,7 @@ interface DeclarativeDesignProps {
   className?: string
   fileName?: string
   full?: boolean
+  styles?: Record<string, string>
 }
 
 export function DeclarativeDesign({
@@ -38,7 +50,8 @@ export function DeclarativeDesign({
   showControls = true,
   className = '',
   fileName = '',
-  full = false
+  full = false,
+  styles = {}
 }: DeclarativeDesignProps) {
   const [htmlContent, setHtmlContent] = useState('')
   const [error, setError] = useState('')
@@ -62,7 +75,8 @@ export function DeclarativeDesign({
     config.scale,
     config.format,
     setError,
-    fileName
+    fileName,
+    styles
   )
 
   const toggleDownloadSection = useCallback(() => {

@@ -1,4 +1,4 @@
-import { DeclarativeDesign } from '../components/designControl'
+import { DeclarativeDesign, DesignOptions } from '../components/designControl'
 import { Content, config } from '@/design'
 const isDev = import.meta.env.DEV
 
@@ -25,8 +25,9 @@ export function Design() {
       .replace(/[-:]/g, '')
       .replace('T', '-')}`,
     control = true,
-    full = false
-  } = config
+    full = false,
+    styles = {}
+  }: DesignOptions = config
 
   if (!control) return <Content />
 
@@ -42,6 +43,7 @@ export function Design() {
       showControls={true}
       fileName={name}
       full={full}
+      styles={styles}
     >
       <Content />
     </DeclarativeDesign>

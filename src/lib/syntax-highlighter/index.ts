@@ -20,3 +20,6 @@ export function processTokens(tokens: Token[][]): string {
     )
     .join('\n')
 }
+
+export { html }
+export default { html, tokenizer, processTokens }

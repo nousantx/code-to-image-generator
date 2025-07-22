@@ -8,4 +8,4 @@ const code = `<div class="[background]-red size-1000px bg-yellow [&_div]:bg-red 
 
 console.log(config.css.property)
 const ui = new TenoxUI(config.css)
-console.log(ui.render('bg-neutral-50 dark:bg-neutral-950'))
+console.log(ui.render('inset-shadow-sm inset-shadow-blue inset-ring-4 inset-ring-red'))

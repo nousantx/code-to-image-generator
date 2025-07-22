@@ -77,7 +77,7 @@ export default function HtmlEditor({ htmlContent, setHtmlContent }: HtmlEditorPr
   }, [updateCursorPosition])
 
   return (
-    <section class="mt-3rem bg-neutral-50 text-neutral-500 rounded-1rem family-code shadow-xl border border-neutral-200 relative overflow-hidden dark:bg-neutral-950 dark:border-neutral-800">
+    <section class="mt-3rem bg-neutral-50 text-neutral-500 rounded-1rem shadow-xl border border-neutral-200 relative overflow-hidden dark:bg-neutral-950 dark:border-neutral-800">
       <div className="relative min-h-300px h-[calc(100%_-_30px)]">
         <div
           ref={lineNumbersRef}

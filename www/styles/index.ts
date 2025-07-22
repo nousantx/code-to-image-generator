@@ -1,10 +1,13 @@
 import { defaultProperties, preflight } from '@tenoxui/preset-tailwind'
 
-export const resetter = { ...defaultProperties, ...preflight }
+export const resetter = {
+  ...defaultProperties,
+  ...preflight,
+  ':root': '[--tw-default-font-sans]-Inter [--tw-default-font-mono]-[JetBrains_Mono]'
+}
 
 export const styles = {
   ...resetter,
-  ':root': '[--tw-default-font-sans]-Inter [--tw-default-font-mono]-[JetBrains_Mono]',
   '.ctrl--btn':
     'h-40px flex items-center px-12px rounded-8px bg-neutral-950 text-neutral-50 hover:bg-neutral-800 transition-colors',
   '.btn--img-prev':

@@ -10,7 +10,8 @@ export function useImageGeneration(
   scale: number,
   outputFormat: string,
   setError: (error: string) => void,
-  fileName?: string
+  fileName?: string,
+  styles?: Record<string, string>
 ) {
   const generateImage = useCallback(async () => {
     try {
@@ -29,7 +30,7 @@ export function useImageGeneration(
 
       ctx.clearRect(0, 0, scaledWidth, scaledHeight)
 
-      const svgData = await generateSVG(htmlContent, scaledWidth, scaledHeight, scale)
+      const svgData = await generateSVG(htmlContent, scaledWidth, scaledHeight, scale, styles)
       const img = new Image()
       img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgData)
 
@@ -58,7 +59,7 @@ export function useImageGeneration(
             .replace('T', '-')}`) + `.${outputFormat}`
 
       if (outputFormat === 'svg') {
-        const svgData = await generateSVG(htmlContent, width * scale, height * scale, scale)
+        const svgData = await generateSVG(htmlContent, width * scale, height * scale, scale, styles)
         const blob = new Blob([svgData], { type: 'image/svg+xml' })
         link.href = URL.createObjectURL(blob)
       } else if (outputFormat === 'html') {
