@@ -31,8 +31,8 @@ importers:
         specifier: ^0.7.1
         version: 0.7.1
       '@tenoxui/preset-tailwind':
-        specifier: ^1.0.2
-        version: 1.0.2
+        specifier: ^1.0.3
+        version: 1.0.3
       '@types/node':
         specifier: ^22.10.2
         version: 22.16.2
@@ -487,8 +487,8 @@ packages:
   '@tenoxui/moxie@0.7.1':
     resolution: {integrity: sha512-lP/1ZnX3W6x9CIFAelvbLdUyjZ+E5jdqr3CgstBf6O4s+oKHSzpuyCK1AtiBroz48D6/SYgzSr6rAgB9dF3MTA==}
 
-  '@tenoxui/preset-tailwind@1.0.2':
-    resolution: {integrity: sha512-k1pcFOgmWpQCYvr236NP6BazBCjs7UB24qs7/y31O9zKzbNi2vUBcQdeSg0/ssph91jlfQpM6kUyJS4m0yQOMw==}
+  '@tenoxui/preset-tailwind@1.0.3':
+    resolution: {integrity: sha512-3jF/IHXnELcNj5TrOWesqBqSfMN4r1Z3RKKRXjlGGwNA6MJQwWkGYBHA+S6vQ+grJwChIAM3zF9qu1NSYDjApA==}
 
   '@tenoxui/types@0.1.2':
     resolution: {integrity: sha512-Vvmcj5qN9qqEnGjBx3S3fQD3yty2RdMG2qtssQywBdEbX9ast1nuHCe60ML4q3+40Dfz2LMRh4Ny7vzGta5xPA==}
@@ -1207,7 +1207,7 @@ snapshots:
     dependencies:
       '@tenoxui/types': 0.1.2
 
-  '@tenoxui/preset-tailwind@1.0.2':
+  '@tenoxui/preset-tailwind@1.0.3':
     dependencies:
       '@tenoxui/types': 0.1.2
 

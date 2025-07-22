@@ -19,7 +19,7 @@
     "@remixicon/react": "^4.6.0",
     "@tenoxui/core": "^2.0.0",
     "@tenoxui/moxie": "^0.7.1",
-    "@tenoxui/preset-tailwind": "^1.0.2",
+    "@tenoxui/preset-tailwind": "^1.0.3",
     "@types/node": "^22.10.2",
     "nguraijs": "^0.6.1",
     "tenoxui": "^1.0.0",
