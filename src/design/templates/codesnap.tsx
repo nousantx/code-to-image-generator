@@ -1,5 +1,5 @@
 import { Ngurai } from '@nguraijs/core'
-import { html, processTokens } from '@lib/syntax-highlighter'
+import { html, processTokens } from '@/lib/syntax-highlighter'
 import { DesignOptions } from '@/components/designControl'
 
 const nx = new Ngurai(html)

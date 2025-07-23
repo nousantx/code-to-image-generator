@@ -8,9 +8,8 @@ export default defineConfig({
   plugins: [preact(), tenoxui()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './www'),
+      '@': path.resolve(__dirname, './src'),
       '@app': path.resolve(__dirname, './'),
-      '@src': path.resolve(__dirname, './src'),
       '@lib': path.resolve(__dirname, './src/lib'),
       '@tenoxui-lib': path.resolve(__dirname, './src/lib/tenoxui')
     }

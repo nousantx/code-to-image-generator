@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'preact/hooks'
-import { tokenizer, processTokens } from '@lib/syntax-highlighter'
+import { tokenizer, processTokens } from '@/lib/syntax-highlighter'
 
 interface HtmlEditorProps {
   htmlContent: string

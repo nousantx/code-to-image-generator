@@ -9,9 +9,8 @@
     "paths": {
       "react": ["./node_modules/preact/compat/"],
       "react-dom": ["./node_modules/preact/compat/"],
-      "@/*": ["./www/*"],
+      "@/*": ["./src/*"],
       "@app/*": ["./*"],
-      "@src/*": ["./src/*"],
       "@lib/*": ["./src/lib/*"],
       "@tenoxui-lib": ["./src/lib/tenoxui/index.ts"]
     },
@@ -32,6 +31,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "www"],
-  "exclude": ["www/design/templates"]
+  "include": ["src"],
+  "exclude": ["src/design/templates"]
 }
