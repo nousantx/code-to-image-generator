@@ -1,12 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'preact/hooks'
 import { useImageGeneration } from '../hooks/useImageGeneration'
-import {
-  RiRefreshLine,
-  RiDownloadLine,
-  RiSaveLine,
-  RiSideBarLine,
-  RiCloseLine
-} from '@remixicon/react'
+import { RiRefreshLine, RiDownloadLine, RiSideBarLine, RiCloseLine } from '@remixicon/react'
 
 export type DesignOptions = {
   width: number
@@ -84,7 +78,7 @@ export function DeclarativeDesign({
   }, [])
 
   const actionButtonClassName =
-    'flex items-center justify-center size-35px bg-transparent hover:bg-neutral-500/70 text-neutral-800 dark:text-neutral-200 rounded-lg border border-neutral-500/70 transition-colors duration-300'
+    'flex items-center justify-center size-35px bg-transparent hover:bg-neutral-500/20 text-neutral-800 dark:text-neutral-200 rounded-lg border border-neutral-500/70 transition-colors duration-300'
 
   const extractHtmlContent = useCallback(() => {
     if (designRef.current) {
@@ -141,29 +135,6 @@ export function DeclarativeDesign({
     setTimeout(() => generateImage(), 100)
   }, [extractHtmlContent, generateImage])
 
-  const saveDesign = useCallback(() => {
-    const designData = {
-      html: htmlContent,
-      ...config,
-      timestamp: new Date().toISOString()
-    }
-
-    const blob = new Blob([JSON.stringify(designData, null, 2)], {
-      type: 'application/json'
-    })
-
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download =
-      fileName ||
-      `untitled-${new Date().toISOString().slice(2, 19).replace(/[-:]/g, '').replace('T', '-')}`
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    URL.revokeObjectURL(url)
-  }, [htmlContent, config])
-
   return (
     <>
       <div className={!full ? 'max-w-screen overflow-auto' : ''}>
@@ -196,9 +167,6 @@ export function DeclarativeDesign({
                   </button>
                   <button onClick={downloadImage} className={actionButtonClassName}>
                     <RiDownloadLine size={16} />
-                  </button>
-                  <button onClick={saveDesign} className={actionButtonClassName}>
-                    <RiSaveLine size={16} />
                   </button>
                 </div>
               </div>
